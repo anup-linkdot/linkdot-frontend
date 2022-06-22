@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import Loader from "../../assets/images/loader.gif"
 import { useNavigate } from 'react-router-dom';
+import { getStorage, setStorage } from '../../utils/auth-utils';
+import { getToken, saveEmail } from '../../services/auth.service';
+
 
 const Email = () => {
     const navigate = useNavigate();
@@ -17,8 +20,30 @@ const Email = () => {
             setNextActive(true)
         }
         else {
-            console.log('dont tell me')
             setNextActive(false)
+        }
+    }
+
+    const saveUserEmail = async () => {
+        const body = {
+            wallet_id: getStorage("wallet_id"),
+            email
+        }
+        const response = await saveEmail(body)
+        console.log('response -- ', response)
+        if (response.status === true) {
+            const Userresponse = await getToken(getStorage("wallet_id"))
+            if (Userresponse.status === true) {
+                console.log('response == ', Userresponse)
+                setStorage("token", Userresponse.data.access_token)
+                setStorage("refresh_token", Userresponse.data.refresh_token)
+                setTimeout(() => {
+                    navigate('/dashboard')
+                }, 1000);
+            }
+            else {
+                alert("Something went wrong. Try again!")
+            }
         }
     }
 
@@ -42,7 +67,7 @@ const Email = () => {
                         <p className='under-text'>Enter your Email ID</p>
                     }
                     <p className={next_active === false ? 'next-btn' : 'next-btn next-btn-active'}
-                        onClick={() => next_active === true && navigate('/dashboard')}>Next</p>
+                        onClick={() => next_active === true && saveUserEmail()}>Next</p>
                 </div>
             </div>
         </div>

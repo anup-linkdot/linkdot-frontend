@@ -78,33 +78,20 @@
     // filter: drop-shadow(6px 6px 0px #FFCD29 );
     border: 1px solid white;
     position: relative;
-    background-color: black;
-
+    background-color: transparent;
+    // box-shadow: #0f1018 -15px -13px 3px 20px, #FFCD29 7px 9px;
     p {
         color: white;
         padding-left: 30px;
     }
 }
 
-.metamask-btn::after {
-    content: '';
-    position: absolute;
-    z-index: 0;
-    left: 6px;
-    bottom: -8px;
-    width: 100%;
-    height: 100%;
-    background: transparent;
-    border: 1px solid #FFCD29;
-}
 
 .wallet-connect-bbtn {
     margin-top: 60px;
-
-    &::after {
-        border: 1px solid #FF6767;
-    }
+    // box-shadow: #0f1018 -15px -13px 3px 20px, #FF6767 7px 9px;
 }
+
 
 .wallet-create-text {
     font-family: 'Roboto-Regular';
@@ -192,9 +179,6 @@
     }
 }
 
-.creator-btn::after {
-    border: 1px solid #20AAFE;
-}
 
 .organiser-btn {
     @extend .creator-btn;
@@ -205,9 +189,6 @@
     }
 }
 
-.organiser-btn::after {
-    border: 1px solid #C640F2;
-}
 
 .category-line {
     height: 95px;

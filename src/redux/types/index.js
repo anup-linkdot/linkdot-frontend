@@ -1,0 +1,4 @@
+export const SET_USER_DATA = "SET_USER_DATA";
+export const LOGOUT_USER = "LOGOUT_USER"
+export const SET_BADGE_ID = "SET_BADGE_ID"
+export const SET_CREATED_BADGE = "SET_CREATED_BADGE"

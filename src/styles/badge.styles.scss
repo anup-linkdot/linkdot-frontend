@@ -1,0 +1,421 @@
+.badges-section {
+    justify-content: space-between;
+}
+
+.loading-badge-section {
+    height: 60vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img {
+        width: 20%;
+    }
+}
+
+.badge-div {
+    width: 275px;
+}
+
+.badge-img {
+    position: relative;
+
+    img {
+        width: 100%;
+        height: 250px;
+    }
+}
+
+.badge-id {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    color: black;
+    font-size: 10px;
+    font-family: sans-serif;
+}
+
+.badge-type {
+    position: absolute;
+    left: 20px;
+    bottom: 10px;
+    color: black;
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.badge-desc {
+    padding-top: 35px;
+    height: 110px;
+}
+
+.badge-data {
+    // justify-content: center;
+    padding: 0px 25px;
+    width: 270px;
+    vertical-align: baseline;
+
+    td {
+        color: white;
+        font-size: 11px;
+        font-family: sans-serif;
+        padding-bottom: 13px;
+    }
+}
+
+.badge-value {
+    width: 170px;
+}
+
+.badge-name {
+    text-align: left;
+    width: 100px;
+
+}
+
+.badge-desc-text {
+    text-align: right;
+}
+
+.dot-badge {
+    width: 10px !important;
+}
+
+.badge-btn-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.badge-btn {
+    background-color: #0F1018;
+    border: 2px solid white;
+    color: white;
+    font-family: "Poppins-Regular";
+    font-size: 12px;
+    padding: 5px 25px;
+    width: 133px;
+    height: 40px;
+}
+
+.issue-btn {
+    color: black;
+    background-color: white;
+}
+
+//create badge 
+
+.create-badge-div {
+    width: 40%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.create-badge-first-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.create-badge-text {
+    font-family: "Poppins-Regular";
+    font-size: 14px;
+    color: white;
+    padding-left: 22px
+}
+
+.x-btn {
+    @extend .create-badge-text;
+    font-family: "Poppins-Medium";
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.badge-type-select {
+    color: white;
+    padding: 20px;
+    width: 100%;
+    height: 60px;
+    border: 1px solid white;
+    background-color: transparent;
+    font-size: 14px;
+    margin-bottom: 25px;
+
+    &::-ms-expand {
+        display: none;
+    }
+}
+
+select:disabled {
+    color: white;
+    opacity: 0.5;
+}
+
+.badge-input {
+    width: 91.5%;
+    border: 1px solid white;
+    font-family: "Poppins-Regular";
+    color: white;
+    background-color: transparent;
+    height: 60px;
+    padding: 0px 20px;
+    margin-bottom: 25px;
+}
+
+.words-count {
+    color: white;
+}
+
+.badge-description {
+    @extend .badge-input;
+    width: 91.5%;
+    height: 20px;
+    padding: 20px 20px;
+    margin-bottom: 8px;
+}
+
+.words-count {
+    text-align: right;
+    opacity: 0.5;
+    margin-bottom: 25px;
+}
+
+.badge-date {
+    @extend .badge-input;
+}
+
+#getFile {
+    display: none;
+}
+
+.badge-input-file {
+    width: 100%;
+    text-align: left;
+    color: white;
+    opacity: 1;
+    border: 1px solid white;
+    margin-bottom: 30px;
+    p {
+        opacity: 0.5;
+    }
+}
+
+.create-badge-btn {
+    width: 100%;
+    height: 60px;
+    background-color: transparent;
+    border: 1px solid white;
+    color: white;
+    font-family: "Poppins-Medium";
+    font-size: 14px;
+}
+
+//badge preview
+
+.preview-text {
+    font-family: "Poppins-Regular";
+    font-size: 14px;
+    color: white;
+    margin-bottom: 15px;
+    padding-left: 15px;
+}
+
+.badge-preview-div {
+    width: 25%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.badge-preview {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.issue-btn-div {
+    // display: block;
+    // margin-left: auto;
+    // margin-right: auto;
+    // flex-direction: row;
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.issue-btn {
+    width: 180px;
+}
+
+.issue-now {
+    background-color: #4E5EDE;
+}
+
+//issue now
+
+.issue-badge-div {
+    width: 70%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.issue-badge-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.upload-btn-div {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.upload-btn {
+    height: 40px;
+    margin-bottom: 0px;
+    margin-bottom: 15px;
+    width: 150px;
+    text-align: center;
+}
+
+.or-text {
+    font-size: 14px;
+    font-family: "Poppins-Regular";
+    color: white;
+    padding-left: 25px;
+}
+
+.issue-email-textarea {
+    width: 400px;
+    height: 150px;
+    border: 1px solid white;
+}
+
+.email-text {
+    font-size: 14px;
+    color: white;
+    font-family: "Poppins-Regular";
+    width: 420px;
+    margin-bottom: 50px;
+}
+
+.share-badge-btn {
+    border: 1px solid white;
+    background-color: #3DAF50;
+    font-family: "Poppins-Bold";
+    width: 100%;
+    padding: 20px;
+    color: white;
+}
+
+.input-row {
+    display: flex;
+    align-items: center;
+}
+
+.info-img {
+    margin-bottom: 15px;
+    margin-left: 10px;
+}
+
+.cross-mark {
+    margin-left: 10px;
+    padding-bottom: 15px;
+}
+
+.info-hover-div {
+    position: absolute;
+    background-color: white;
+    color: black;
+    font-size: 12px;
+    font-family: "Poppins-Regular";
+    top: -60px;
+    width: 200px;
+    padding: 2px;
+}
+
+.loading-share-badge {
+    background-color: gray;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    img {
+        padding-right: 10px;
+    }
+}
+
+// claim your badge 
+.claim-badge-div {
+    height: 100vh;
+    background-color: #0F1018;
+    padding: 0px 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.badge-data-left {
+    padding: 30px 70px;
+    margin: 0px 50px;
+    width: 50%;
+    border: 1px solid #FFFFFF;
+}
+
+.congrats-text {
+    font-family: "Poppins-Bold";
+    color: #27FF04;
+    font-size: 30px;
+    text-align: left;
+    padding-bottom: 10px;
+}
+
+.desc-para {
+    color: white;
+    font-size: 12px;
+    font-family: "Poppins-Regular";
+    text-align: left;
+}
+
+.badge-text {
+    font-size: 16px;
+    text-align: center;
+    font-family: "Poppins-Regular";
+    color: white;
+    margin-bottom: 30px;
+
+    span {
+        color: rgb(51, 150, 231);
+    }
+}
+
+.badge-data-right {
+    width: 50%;
+    padding: 0px 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.badge-temp {
+    margin-top: 35px;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.badge-type-text-data {
+    color: white;
+    font-family: "Poppins-Medium";
+    font-size: 20px;
+}
+
+.or-text {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    text-align: center;
+}

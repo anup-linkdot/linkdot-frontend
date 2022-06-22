@@ -7,6 +7,16 @@ import Intro from '../components/Auth/Intro';
 import Loader from '../components/Auth/Loader';
 import Email from '../components/Auth/Email';
 import Dashboard from '../components/Dashboard/Dashboard';
+import Main from '../components/Dashboard/Main';
+import NoBadge from '../components/Dashboard/NoBadge';
+import BadgeMain from '../components/Dashboard/BadgeMain';
+import CreateBadge from '../components/Dashboard/CreateBadge';
+import BadgePreview from '../components/Dashboard/BadgePreview';
+import IssueBadge from '../components/Dashboard/IssueBadge';
+import Insights from '../components/Dashboard/Insights';
+import PrivateRoute from './PrivateRoute';
+import ClaimBadge from '../components/ClaimBadge';
+import LoginRoute from './LoginRoute';
 // import PrivateRoute from '../routes/private-route';
 // import ProtectedRoute from '../routes/protected-route';
 
@@ -14,9 +24,11 @@ const Routing = () => (
     <Router>
         <Routes>
             <Route
-                path="/intro"
+                path=""
                 element={
-                    <Login />
+                    <LoginRoute>
+                        <Login />
+                    </LoginRoute>
                 }
             >
                 <Route path={''} element={<Intro />} />
@@ -26,13 +38,32 @@ const Routing = () => (
                 <Route path={'welcome'} element={<Loader />} />
             </Route>
             <Route
-                path='/dashboard'
-                element={<Dashboard />}
+                path=''
+                element={
+                    <PrivateRoute>
+                        <Dashboard />
+                    </PrivateRoute>}
             >
-
+                <Route path={'dashboard'}
+                    element={
+                        <Main />
+                    }>
+                    <Route path={'nobadge'} element={<NoBadge />} />
+                    <Route path={'badge'} element={<BadgeMain />} />
+                </Route>
+                <Route path={'create/badge'} element={<CreateBadge />} />
+                <Route path={'badge/preview'} element={<BadgePreview />} />
+                <Route path={'badge/issue'} element={<IssueBadge />} />
+                <Route path={'insights'} element={<Insights />} />
             </Route>
-        </Routes>
-    </Router>
+            <Route
+                path="/claim/badge"
+                element={
+                    <ClaimBadge />
+                }
+            />
+        </Routes >
+    </Router >
 );
 
 export default Routing;

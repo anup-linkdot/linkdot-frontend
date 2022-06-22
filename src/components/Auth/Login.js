@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Outlet } from "react-router-dom";
 import '../../styles/auth.styles.scss'
 import Logo from '../../assets/images/logo.png'

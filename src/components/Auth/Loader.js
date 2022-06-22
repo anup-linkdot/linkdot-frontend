@@ -7,7 +7,7 @@ const Loader = () => {
 
     useEffect(() => {
         setTimeout(() => {
-            navigate('/intro/category')
+            navigate('/category')
         }, 3000);
     }, [])
     return (

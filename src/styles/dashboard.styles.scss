@@ -1,0 +1,200 @@
+.dashboard-main-div {
+    background-color: black;
+    height: 100vh;
+}
+
+.dashboard-template {
+    padding: 30px 80px;
+    position: relative;
+}
+
+.navbar-main {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 30px
+}
+
+.navbar-left-div {
+    @extend .navbar-main;
+    justify-content: flex-start;
+
+    .profile-name {
+        color: white;
+        font-size: 22px;
+        font-family: "Poppins-Regular";
+        padding-left: 18px
+    }
+}
+
+.navbar-right-div {
+    @extend .navbar-main;
+    justify-content: flex-end;
+}
+
+.create-badge-btn-navbar {
+    background-color: #FFD900;
+    margin-right: 20px;
+    width: 123px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    p {
+        color: black !important;
+        font-family: "Poppins-Medium";
+        font-size: 10px;
+    }
+}
+
+.linkdot-logo {
+    position: absolute;
+    bottom: 40px;
+    left: 80px;
+}
+
+// main style
+
+.dashboard-btn {
+    background-color: transparent;
+    width: 188px;
+    height: 40px;
+    margin-bottom: 20px;
+    border: 1px solid #0D99FF;
+
+    p {
+        font-size: 16px;
+        color: white !important;
+    }
+}
+
+.active-main-btn {
+    background-color: #0D99FF;
+    border: none;
+}
+
+.main-row {
+    display: flex;
+    justify-content: center;
+}
+
+.button-left-main {
+    width: 30%;
+}
+
+.main-section-div {
+    width: 100%;
+    height: 75vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.no-badge-text {
+    font-family: "Poppins-Regular";
+    font-size: 14px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: white;
+}
+
+.main-pg-button {
+    margin-top: 20px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px 13px;
+    border: 1px solid #A58E09;
+}
+
+.no-badge-div {
+    width: 50%;
+    margin-top: 40px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.badge-navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 35px;
+}
+
+.badge-section {
+    display: flex;
+    align-items: center;
+}
+
+.badge-tab {
+    padding: 5px 0px;
+    margin-right: 40px;
+    cursor: pointer;
+    p {
+        color: white;
+        font-family: "Poppins-Regular";
+        font-size: 14px;
+    }
+}
+
+.badge-tab-active  {
+    border-bottom: 2px solid white;
+}
+
+.select-option {
+    background-color: transparent;
+    border: 1px solid white;
+    padding: 5px;
+    width: 140px;
+    color: white;
+    font-family: "Poppins-Regular";
+    font-size: 14px;
+    height: 40px;
+    option {
+        color: white;
+    }
+    option:disabled {
+        color: white !important;
+    }
+}
+
+.badge-main-div {
+    width: 100%;
+    height: 100%;
+}
+
+.badges-section {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.badge-div {
+    padding: 10px;
+    border: 1px solid white;
+}
+
+//dropdown
+
+.settings-dropdown-div {
+    position: relative;
+}
+
+.settings-dropdown {
+    background-color: white;
+    position: absolute;
+    right: 6px;
+    top: 34px;
+    padding: 10px;
+}
+
+.dropdown-div {
+    cursor: pointer;
+    padding: 5px;
+    border: 1px solid black;
+}

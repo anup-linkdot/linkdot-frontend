@@ -1,9 +1,27 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { userType } from '../../services/auth.service';
+import { getStorage } from '../../utils/auth-utils';
 
 
 const Category = () => {
     const navigate = useNavigate();
+
+    const setCategory = async (category) => {
+        const body = {
+            wallet_id: getStorage('wallet_id'),
+            user_type: category
+        }
+        const response = await userType(body)
+        console.log('response -- ', response)
+        if (response.status === true) {
+            navigate('/username')
+        }
+        else {
+            alert("install metamask extension!!")
+        }
+
+    }
 
     return (
         <div className='intro-community-div loader-div'>
@@ -13,11 +31,17 @@ const Category = () => {
             </div>
             <div className='vertical-line category-line'></div>
             <div className='intro-right-div loader-right-div'>
-                <button className='metamask-btn creator-btn' onClick={() => navigate('/intro/username')}>
-                    <p>Creator</p>
+                <button className='metamask-btn creator-btn' onClick={() => setCategory('NFT_Artist')}>
+                    <p>NFT Artist</p>
                 </button>
-                <button className='metamask-btn organiser-btn'>
-                    <p>Organiser</p>
+                <button className='metamask-btn organiser-btn' onClick={() => setCategory('Web3_Influencer')}>
+                    <p>Web3 Influencer</p>
+                </button>
+                <button className='metamask-btn organiser-btn' onClick={() => setCategory('DAO_Community')}>
+                    <p>DAO or Community</p>
+                </button>
+                <button className='metamask-btn organiser-btn' onClick={() => setCategory('Contributor')}>
+                    <p>Contributor</p>
                 </button>
             </div>
         </div>

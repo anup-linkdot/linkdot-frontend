@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Loader from "../../assets/images/loader.gif"
+import { getStorage } from '../../utils/auth-utils';
+import { saveUserName } from '../../services/auth.service';
 
 const Username = () => {
     const navigate = useNavigate();
@@ -14,6 +16,21 @@ const Username = () => {
         console.log(username)
         if (name.length > 3)
             setNextActive(true)
+    }
+
+    const saveUserNameFunc = async () => {
+        const body = {
+            wallet_id: getStorage('wallet_id'),
+            user_name: username
+        }
+        const response = await saveUserName(body)
+        console.log('response -- ', response)
+        if (response.status === true) {
+            navigate('/email')
+        }
+        else {
+            alert("Something went wrong. Try again!")
+        }
     }
 
     return (
@@ -36,7 +53,7 @@ const Username = () => {
                     {username.length > 0 &&
                         <p className='under-text'>Enter your username</p>
                     }
-                    <p className={next_active === false ? 'next-btn' : 'next-btn next-btn-active'} onClick={() => next_active === true && navigate('/intro/email')}>Next</p>
+                    <p className={next_active === false ? 'next-btn' : 'next-btn next-btn-active'} onClick={() => next_active === true && saveUserNameFunc()}>Next</p>
                 </div>
             </div>
         </div>

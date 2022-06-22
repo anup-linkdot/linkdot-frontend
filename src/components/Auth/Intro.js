@@ -2,9 +2,46 @@ import React from 'react';
 import Metamask from '../../assets/images/metamask.png'
 import WalletConnect from "../../assets/images/walletconnect.png"
 import { useNavigate } from 'react-router-dom';
+import { walletConnect } from '../../services/auth.service';
+import { setStorage } from '../../utils/auth-utils';
 
 const Intro = () => {
     const navigate = useNavigate();
+
+    const connectMetaMask = () => {
+        if (window.ethereum) {
+            // Do something 
+            window.ethereum.request({ method: 'eth_requestAccounts' })
+                .then(async (res) => {
+                    // Return the address of the wallet and set it on localstorage
+                    setStorage('wallet_id', res[0])
+                    const body = {
+                        wallet_id: res[0],
+                        wallet_name: "Metamask"
+                    }
+                    const response = await walletConnect(body)
+                    console.log('response -- ', response)
+                    if (response.status === true) {
+                        if (response.data.access_token) {
+                            setStorage("token", response.data.access_token)
+                            setStorage("refresh_token", response.data.refresh_token)
+                            setTimeout(() => {
+                                navigate('/dashboard')
+                            }, 1000);
+                        }
+                        else {
+                            navigate('/welcome')
+                        }
+                    }
+                    else {
+                        alert("install metamask extension!!")
+                    }
+                })
+
+        } else {
+            alert("install metamask extension!!")
+        }
+    }
 
     return (
         <div className='intro-community-div'>
@@ -17,11 +54,11 @@ const Intro = () => {
                 </p>
             </div>
             <div className='intro-right-div'>
-                <button className='metamask-btn' onClick={() => navigate('/intro/welcome')}>
+                <button className='metamask-btn' onClick={() => connectMetaMask()}>
                     <img src={Metamask} className='metamask-img' />
                     <p>Metamask</p>
                 </button>
-                <button className='metamask-btn wallet-connect-bbtn'>
+                <button className='metamask-btn wallet-connect-bbtn' disabled>
                     <img src={WalletConnect} className='metamask-img' />
                     <p>Wallet Connect</p>
                 </button>
