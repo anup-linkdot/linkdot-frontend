@@ -58,7 +58,7 @@ const BadgePreview = () => {
             </div>
 
             <div className='issue-btn-div'>
-                <button className='create-badge-btn issue-btn' onClick={() => navigate('/dashboard')}>Issue Later</button>
+                <button className='create-badge-btn issue-btn' onClick={() => navigate('/dashboard/badge')}>Issue Later</button>
                 <button className='create-badge-btn issue-btn issue-now' onClick={() => navigate('/badge/issue')}>Issue to user</button>
             </div>
         </div>
