@@ -52,7 +52,7 @@ const Dashboard = () => {
         <div className='dashboard-main-div'>
             <div className='dashboard-template'>
                 <div className='navbar-main'>
-                    <div className='navbar-left-div' onClick={() => navigate('/dashboard')}>
+                    <div className='navbar-left-div' onClick={() => navigate('/dashboard/nobadge')}>
                         <img src={Profile} alt="" />
                         <p className='profile-name'>{userReducer.user?.user_name}</p>
                     </div>
