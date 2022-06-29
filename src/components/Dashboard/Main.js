@@ -1,30 +1,33 @@
-import React, { useState } from 'react';
-import { Outlet, useNavigate } from 'react-router-dom';
-import "../../styles/dashboard.styles.scss"
+import React from "react";
+import { Outlet } from "react-router-dom";
+import "../../styles/dashboard.styles.scss";
+import MenuItem from "./MenuItem";
 
 const Main = () => {
-    const navigate = useNavigate();
-    const [active, setActive] = useState("Dashboard")
-
-    return (
-        <div className='main-dashboard-div'>
-              <div className='main-row'>
-                <div className='button-left-main'>
-                    <button className={active === 'Dashboard' ? 'metamask-btn creator-btn create-badge-btn-navbar dashboard-btn active-main-btn' : 'metamask-btn creator-btn create-badge-btn-navbar dashboard-btn'}
-                        onClick={() => { setActive("Dashboard"); navigate('/dashboard/nobadge') }}>
-                        <p>Dashboard</p>
-                    </button>
-                    <button className={active === 'Insights' ? 'metamask-btn creator-btn create-badge-btn-navbar dashboard-btn active-main-btn' : 'metamask-btn creator-btn create-badge-btn-navbar dashboard-btn'}
-                        onClick={() => { setActive("Insights"); navigate('/insights') }}>
-                        <p>Badge Insight</p>
-                    </button>
-                </div>
-                <div className='main-section-div'>
-                    <Outlet />
-                </div>
-            </div>
+  const navLinks = [
+    { name: "Dashboard", url: "/dashboard/nobadge", path: "/dashboard/" },
+    { name: "Badge Insight", url: "/insights", path: "/insights/" },
+  ];
+  const currentPath = window.location.pathname;
+  return (
+    <div className="main-dashboard-div">
+      <div className="main-row">
+        <div className="button-left-main">
+          {navLinks.map(({ name, url, path }) => (
+            <MenuItem
+              key={name}
+              name={name}
+              active={currentPath === { path }}
+              url={url}
+            />
+          ))}
         </div>
-    )
-}
+        <div className="main-section-div">
+          <Outlet />
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export default Main;
