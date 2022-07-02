@@ -1,23 +1,37 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import Routing from './config/Routes';
-import store from './redux/store/store';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import Routing from "./config/Routes";
+import store from "./redux/store/store";
 import { Provider } from "react-redux";
-import './index.scss';
-import reportWebVitals from './reportWebVitals';
-import { PersistGate } from 'redux-persist/integration/react';
-import { persistStore } from 'redux-persist';
+import "./index.scss";
+import reportWebVitals from "./reportWebVitals";
+import { PersistGate } from "redux-persist/integration/react";
+import { persistStore } from "redux-persist";
+import { ThirdwebProvider, ChainId } from "@thirdweb-dev/react";
 
-let persistor = persistStore(store)
+let persistor = persistStore(store);
 
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <Provider store={store}>
-    <PersistGate persistor={persistor}>
-      <Routing />
-    </PersistGate>
-  </Provider>,
+  <ThirdwebProvider
+    desiredChainId={ChainId.Mainnet}
+    walletConnectors={[
+      "walletConnect",
+      { name: "injected", options: { shimDisconnect: true } },
+      {
+        name: "walletLink",
+        options: {
+          appName: "Example App",
+        },
+      },
+    ]}
+  >
+    <Provider store={store}>
+      <PersistGate persistor={persistor}>
+        <Routing />
+      </PersistGate>
+    </Provider>
+  </ThirdwebProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function
