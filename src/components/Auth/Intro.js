@@ -33,7 +33,9 @@ const Intro = () => {
   };
 
   useEffect(() => {
-    if (address) registerWallet(address);
+    if (address) {
+      registerWallet(address);
+    }
   }, [address]);
 
   return <Connect />;

@@ -1,7 +1,6 @@
 import { useMetamask, useWalletConnect } from "@thirdweb-dev/react";
 import Metamask from "../../assets/images/metamask.png";
 import WalletConnect from "../../assets/images/walletconnect.png";
-import "../../styles/auth.styles.scss";
 import Logo from "../../assets/images/logo.png";
 
 const Connect = () => {
@@ -55,3 +54,14 @@ const Connect = () => {
 };
 
 export default Connect;
+
+export const ConnectComponent = () => (
+  <div className="login-main-div">
+    <div className="outlet-div">
+      <Connect />
+    </div>
+    <div className="linkdot-logo-div">
+      <img alt="" src={Logo} />
+    </div>
+  </div>
+);

@@ -21,7 +21,7 @@ root.render(
       {
         name: "walletLink",
         options: {
-          appName: "Example App",
+          appName: "Linkdot",
         },
       },
     ]}

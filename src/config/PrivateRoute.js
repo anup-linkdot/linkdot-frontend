@@ -1,10 +1,9 @@
 import { useAddress } from "@thirdweb-dev/react";
-import Connect from "../components/Auth/Connect";
-import "../styles/auth.styles.scss";
+import { ConnectComponent } from "../components/Auth/Connect";
 
 const PrivateRoute = ({ children }) => {
   const address = useAddress();
-  return address ? children : <Connect />;
+  return address ? children : <ConnectComponent />;
 };
 
 export default PrivateRoute;

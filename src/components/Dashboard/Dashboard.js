@@ -14,7 +14,6 @@ import { useAddress, useDisconnect } from "@thirdweb-dev/react";
 // Modal.setAppElement('#yourAppElement');
 
 const DashboardWrapper = () => {
-  console.log("reached dashboard");
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const userReducer = useSelector((state) => state.userReducer);
@@ -23,10 +22,10 @@ const DashboardWrapper = () => {
   const address = useAddress();
 
   useEffect(() => {
-    if (address && address !== undefined) {
-      //   getNewToken();
+    if (address) {
+      getNewToken();
     }
-  }, [address]);
+  }, []);
 
   const getNewToken = async () => {
     const token = getStorage("token");
@@ -36,7 +35,7 @@ const DashboardWrapper = () => {
       const user_response = await getUserDetails();
       if (user_response.status === true) {
         console.log("", user_response.data);
-        // dispatch(setUserData(user_response.data));
+        dispatch(setUserData(user_response.data));
         setTimeout(() => {
           navigate("/dashboard/nobadge");
         }, 1000);
@@ -80,7 +79,7 @@ const DashboardWrapper = () => {
               />
               {dropdown === true && (
                 <div className="settings-dropdown">
-                  <div className="dropdown-div" onClick={() => logoutUserNav()}>
+                  <div className="dropdown-div" onClick={() => disconnect()}>
                     <p>Disconnect</p>
                   </div>
                 </div>
