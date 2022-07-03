@@ -47,7 +47,7 @@ const DashboardWrapper = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("refresh_token");
     localStorage.removeItem("wallet_id");
-    navigate("/");
+    disconnect();
   };
 
   return (
@@ -76,7 +76,7 @@ const DashboardWrapper = () => {
               />
               {dropdown === true && (
                 <div className="settings-dropdown">
-                  <div className="dropdown-div" onClick={disconnect}>
+                  <div className="dropdown-div" onClick={() => logoutUserNav()}>
                     <p>Disconnect</p>
                   </div>
                 </div>
