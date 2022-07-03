@@ -9,20 +9,24 @@ import { getToken } from "../../services/auth.service";
 import { getUserDetails } from "../../services/user.service";
 import { logoutUser, setUserData } from "../../redux/actions/auth";
 import { useDispatch, useSelector } from "react-redux";
-import { useDisconnect } from "@thirdweb-dev/react";
+import { useAddress, useDisconnect } from "@thirdweb-dev/react";
 
 // Modal.setAppElement('#yourAppElement');
 
 const DashboardWrapper = () => {
+  console.log("reached dashboard");
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const userReducer = useSelector((state) => state.userReducer);
   const [dropdown, setDropdown] = useState(false);
   const disconnect = useDisconnect();
+  const address = useAddress();
 
   useEffect(() => {
-    getNewToken();
-  }, []);
+    if (address && address !== undefined) {
+      //   getNewToken();
+    }
+  }, [address]);
 
   const getNewToken = async () => {
     const token = getStorage("token");
@@ -32,7 +36,7 @@ const DashboardWrapper = () => {
       const user_response = await getUserDetails();
       if (user_response.status === true) {
         console.log("", user_response.data);
-        dispatch(setUserData(user_response.data));
+        // dispatch(setUserData(user_response.data));
         setTimeout(() => {
           navigate("/dashboard/nobadge");
         }, 1000);

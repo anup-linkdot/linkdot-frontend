@@ -1,6 +1,5 @@
 import { useAddress } from "@thirdweb-dev/react";
-import { Navigate, Route } from "react-router-dom";
-import { getStorage } from "../utils/auth-utils";
+import { Navigate } from "react-router-dom";
 
 const LoginRoute = ({ children }) => {
   const address = useAddress();
