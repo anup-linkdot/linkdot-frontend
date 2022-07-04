@@ -2,7 +2,6 @@ import { useNavigate } from "react-router-dom";
 
 const MenuItem = ({ name, active, url }) => {
   const navigate = useNavigate();
-  console.log(`${name}:${active}`);
   const boxShadow = active
     ? "-6px -6px 0px 0.01px #0D99FF"
     : "#0f1018 -6px -7px 0px -1px, -6px -7px #0D99FF";

@@ -1,9 +1,9 @@
-import { Navigate, Route } from "react-router-dom"
-import { getStorage } from "../utils/auth-utils"
+import { useAddress } from "@thirdweb-dev/react";
+import { ConnectComponent } from "../components/Auth/Connect";
 
 const PrivateRoute = ({ children }) => {
-    let token = getStorage("token")
-    return token ? children : <Navigate to="/" />
-}
+  const address = useAddress();
+  return address ? children : <ConnectComponent />;
+};
 
-export default PrivateRoute
+export default PrivateRoute;
