@@ -10,6 +10,7 @@ import { getUserDetails } from "../../services/user.service";
 import { logoutUser, setUserData } from "../../redux/actions/auth";
 import { useDispatch, useSelector } from "react-redux";
 import { useAddress, useDisconnect } from "@thirdweb-dev/react";
+import DropDown from "./Dropdown";
 
 // Modal.setAppElement('#yourAppElement');
 
@@ -17,7 +18,6 @@ const DashboardWrapper = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const userReducer = useSelector((state) => state.userReducer);
-  const [dropdown, setDropdown] = useState(false);
   const disconnect = useDisconnect();
   const address = useAddress();
 
@@ -71,20 +71,7 @@ const DashboardWrapper = () => {
             >
               <p>Create Badge</p>
             </button>
-            <div className="settings-dropdown-div">
-              <img
-                alt=""
-                src={Settings}
-                onClick={() => setDropdown(!dropdown)}
-              />
-              {dropdown === true && (
-                <div className="settings-dropdown">
-                  <div className="dropdown-div" onClick={() => disconnect()}>
-                    <p>Disconnect</p>
-                  </div>
-                </div>
-              )}
-            </div>
+            <DropDown disconnect={disconnect} />
           </div>
         </div>
         <Outlet />
