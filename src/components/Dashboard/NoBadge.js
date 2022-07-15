@@ -27,6 +27,9 @@ const NoBadge = () => {
       <button
         className="metamask-btn creator-btn create-badge-btn-navbar dashboard-btn main-pg-button"
         onClick={() => navigate("/create/badge")}
+        style={{
+          boxShadow: "#0f1018 5px 6px 0px -1px, 5px 6px #ffcd29",
+        }}
       >
         <p>Create Badge</p>
       </button>
