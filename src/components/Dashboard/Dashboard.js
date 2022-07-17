@@ -77,7 +77,7 @@ const DashboardWrapper = () => {
             >
               <p>Create Badge</p>
             </button>
-            <DropDown disconnect={disconnect} />
+            <DropDown disconnect={logoutUserNav} />
           </div>
         </div>
         <Outlet />
