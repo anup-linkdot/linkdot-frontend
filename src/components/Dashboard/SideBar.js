@@ -1,23 +1,29 @@
-import { useState } from "react";
 import MenuItem from "./MenuItem";
 
 const SideBar = () => {
+  const currentPath = window.location.pathname;
   const navLinks = [
-    { name: "Dashboard", url: "/dashboard/nobadge", path: "/dashboard/" },
+    // FIXME: Dashboard menu link currently pointing to `/dashboard/nobadge`, it should be `dashboard`
+    {
+      name: "Dashboard",
+      url: "/dashboard/nobadge",
+      path: "/dashboard/nobadge",
+    },
     { name: "Badge Insight", url: "/insights", path: "/insights" },
   ];
-  const currentPath = window.location.pathname;
 
   return (
     <>
-      {navLinks.map(({ name, url, path }) => (
-        <MenuItem
-          key={name}
-          name={name}
-          active={currentPath === path}
-          url={url}
-        />
-      ))}
+      {navLinks.map(({ name, url, path }) => {
+        return (
+          <MenuItem
+            key={name}
+            name={name}
+            active={currentPath === path}
+            url={url}
+          />
+        );
+      })}
     </>
   );
 };
