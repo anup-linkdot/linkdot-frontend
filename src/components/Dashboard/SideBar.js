@@ -11,7 +11,6 @@ const SideBar = () => {
     },
     { name: "Badge Insight", url: "/insights", path: "/insights" },
   ];
-
   return (
     <>
       {navLinks.map(({ name, url, path }) => {
