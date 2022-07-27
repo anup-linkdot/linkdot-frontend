@@ -12,11 +12,14 @@ import BadgeMain from "../components/Dashboard/BadgeMain";
 import CreateBadge from "../components/Dashboard/CreateBadge";
 import BadgePreview from "../components/Dashboard/BadgePreview";
 import IssueBadge from "../components/Dashboard/IssueBadge";
-import Insights from "../components/Dashboard/Insights";
+import InsightsPage from "../components/pages/insights";
 import PrivateRoute from "./PrivateRoute";
 import ClaimBadge from "../components/ClaimBadge";
 import LoginRoute from "./LoginRoute";
-import DashboardWrapper from "../components/Dashboard/Dashboard";
+import DashboardWrapper from "../components/Dashboard/DashboardWrapper";
+import Dashboard from "../components/Dashboard/Dashboard";
+import IssuedBadgeDetail from "../components/pages/issued-badge-detail";
+import Insights from "../components/pages/insights";
 
 const Routing = () => (
   <Router>
@@ -46,11 +49,15 @@ const Routing = () => (
         <Route path={"dashboard"} element={<Main />}>
           <Route path={"nobadge"} element={<NoBadge />} />
           <Route path={"badge"} element={<BadgeMain />} />
+          <Route path="" element={<Dashboard />} />
         </Route>
         <Route path={"create/badge"} element={<CreateBadge />} />
         <Route path={"badge/preview"} element={<BadgePreview />} />
         <Route path={"badge/issue"} element={<IssueBadge />} />
-        <Route path={"insights"} element={<Insights />} />
+        <Route path={"insight"} element={<Insights />} />
+
+        <Route path={"insights"} element={<InsightsPage />} />
+        <Route path={"insights/badge-detail"} element={<IssuedBadgeDetail />} />
       </Route>
       <Route path="/claim/badge" element={<ClaimBadge />} />
     </Routes>

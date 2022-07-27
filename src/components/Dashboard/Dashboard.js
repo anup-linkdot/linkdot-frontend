@@ -1,90 +1,144 @@
-import React, { useEffect, useState } from "react";
-import { Outlet, useNavigate } from "react-router-dom";
-import "../../styles/dashboard.styles.scss";
-import Profile from "../../assets/images/profile.png";
-import Settings from "../../assets/images/Settings.png";
-import Logo from "../../assets/images/logo.png";
-import { getStorage, setStorage } from "../../utils/auth-utils";
-import { getToken } from "../../services/auth.service";
-import { getUserDetails } from "../../services/user.service";
-import { logoutUser, setUserData } from "../../redux/actions/auth";
-import { useDispatch, useSelector } from "react-redux";
-import { useAddress, useDisconnect } from "@thirdweb-dev/react";
-import DropDown from "./Dropdown";
+import moment from "moment";
+import { Fragment, useEffect, useState } from "react";
+import { showAllBadge } from "../../services/badge.service";
+import BadgeCard from "../Badge/BadgeCard";
+import BadgeLoad from "../../assets/images/badge-load.gif";
+import Badge from "../Badge";
+import { useNavigate } from "react-router-dom";
+import { BadgeList } from "../Badge/BadgeList";
 
-// Modal.setAppElement('#yourAppElement');
-
-const DashboardWrapper = () => {
+const Dashboard = () => {
+  const [active, setActive] = useState("Insights");
+  const [active_tab, setActiveTab] = useState("issued");
+  const [badges, setBadges] = useState([]);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const userReducer = useSelector((state) => state.userReducer);
-  const disconnect = useDisconnect();
-  const address = useAddress();
-
   useEffect(() => {
-    if (address) {
-      getNewToken();
-    }
-  }, []);
+    getBadge();
+  }, [active_tab]);
 
-  const getNewToken = async () => {
-    const token = getStorage("token");
-    console.log("token -- ", token);
-    if (token) {
-      //call api to get user data
-      const user_response = await getUserDetails();
-      if (user_response.status === true) {
-        console.log("", user_response.data);
-        dispatch(setUserData(user_response.data));
-        setTimeout(() => {
-          navigate("/dashboard/nobadge");
-        }, 1000);
-      }
+  const getBadge = async () => {
+    const response = await showAllBadge(active_tab);
+    if (response.status === true) {
+      setBadges(response.data);
     } else {
-      navigate("/");
+      alert("Something went wrong. Try again!");
     }
   };
 
-  const logoutUserNav = () => {
-    dispatch(logoutUser());
-    localStorage.removeItem("token");
-    localStorage.removeItem("refresh_token");
-    localStorage.removeItem("wallet_id");
-    disconnect();
+  const changeTab = async (tab) => {
+    setLoading(true);
+    setActiveTab(tab);
+    const response = await showAllBadge(tab);
+    if (response.status === true) {
+      console.log("response -- ", response.data);
+      setBadges(response.data);
+      setLoading(false);
+    } else {
+      alert("Something went wrong. Try again!");
+    }
   };
 
   return (
-    <div className="dashboard-main-div">
-      <div className="dashboard-template">
-        <div className="navbar-main">
-          <div
-            className="navbar-left-div"
-            onClick={() => navigate("/dashboard/nobadge")}
-          >
-            <img src={Profile} alt="" />
-            <p className="profile-name">{userReducer.user?.user_name}</p>
-          </div>
-          <div className="navbar-right-div">
-            <button
-              className="metamask-btn creator-btn create-badge-btn-navbar"
-              onClick={() => navigate("/create/badge")}
-              style={{
-                boxShadow: "#0f1018 4px 5px 0px -1px, 4px 5px #FFFFFF",
-                border: "none",
-                fontSize: "1rem",
-                lineHeight: "1.5rem",
-              }}
+    <div
+      style={{
+        marginBottom: "50px",
+      }}
+    >
+      <div className="insight-section-div">
+        <div className="badge-navbar">
+          <div className="badge-section">
+            <div
+              className={
+                active_tab === "issued"
+                  ? "badge-tab badge-tab-active"
+                  : "badge-tab"
+              }
+              onClick={() => changeTab("issued")}
             >
-              <p>Create Badge</p>
-            </button>
-            <DropDown disconnect={logoutUserNav} />
+              <p>Issued Badge</p>
+            </div>
+            <div
+              className={
+                active_tab === "claimed"
+                  ? "badge-tab badge-tab-active"
+                  : "badge-tab"
+              }
+              onClick={() => changeTab("claimed")}
+            >
+              <p>Claimed Badge</p>
+            </div>
           </div>
+          <select placeholder="Sort by" className="select-option">
+            <option disabled>Sort by</option>
+          </select>
         </div>
-        <Outlet />
+        {loading === false ? (
+          <table className="insights-table">
+            <tr className="table-keys">
+              <th className="key-text">S.No</th>
+              <th className="key-text">Badge Name</th>
+              <th className="key-text">Badge Type</th>
+              <th className="key-text">Issue Date</th>
+              <th className="key-text">
+                {active_tab === "issued" ? "Issued To" : "Issued From"}
+              </th>
+              <th className="key-text">Wallet ID</th>
+              <th className="key-text">Status</th>
+            </tr>
+            {active_tab === "issued" ? (
+              <Fragment>
+                {badges.map((badge, index) => {
+                  return (
+                    <tr
+                      className="table-keys  table-values"
+                      key={badge._id + +Math.random()}
+                    >
+                      <td className="key-value">{index + 1}</td>
+                      <td className="key-value">{badge.name}</td>
+                      <td className="key-value">{badge.badge_type}</td>
+                      <td className="key-value">
+                        {moment(badge.issued_date).format("MMYYYY")}
+                      </td>
+                      <td className="key-value">{badge.issued_to?.length}</td>
+                      <td className="key-value">-</td>
+                      <td className="key-value">Pending</td>
+                    </tr>
+                  );
+                })}
+              </Fragment>
+            ) : (
+              <Fragment>
+                {badges.map((badge, index) => {
+                  return (
+                    <tr
+                      className="table-keys  table-values"
+                      key={badge.badge_id._id + Math.random()}
+                    >
+                      <td className="key-value">{index + 1}</td>
+                      <td className="key-value">{badge.badge_id.name}</td>
+                      <td className="key-value">{badge.badge_id.badge_type}</td>
+                      <td className="key-value">
+                        {moment(badge.badge_id.issued_date).format("MMYYYY")}
+                      </td>
+                      <td className="key-value">{badge.badge_id.issued_by}</td>
+                      <td className="key-value">-</td>
+                      <td className="key-value">Accepted</td>
+                    </tr>
+                  );
+                })}
+              </Fragment>
+            )}
+          </table>
+        ) : (
+          <div className="badges-section loading-badge-section">
+            <img alt="" src={BadgeLoad} />
+          </div>
+        )}
       </div>
-      <img alt="" className="linkdot-logo" src={Logo} />
+      <BadgeList badgeList={[0]} />
     </div>
   );
 };
 
-export default DashboardWrapper;
+export default Dashboard;
