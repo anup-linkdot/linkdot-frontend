@@ -3,7 +3,6 @@ import { Outlet, useNavigate } from "react-router-dom";
 import "../../styles/dashboard.styles.scss";
 import Profile from "../../assets/images/profile.png";
 import Settings from "../../assets/images/Settings.png";
-import Logo from "../../assets/images/logo.png";
 import { getStorage, setStorage } from "../../utils/auth-utils";
 import { getToken } from "../../services/auth.service";
 import { getUserDetails } from "../../services/user.service";
@@ -59,7 +58,7 @@ const DashboardWrapper = () => {
         <div className="navbar-main">
           <div
             className="navbar-left-div"
-            onClick={() => navigate("/dashboard/nobadge")}
+            onClick={() => navigate("/dashboard/")}
           >
             <img src={Profile} alt="" />
             <p className="profile-name">{userReducer.user?.user_name}</p>
@@ -82,7 +81,6 @@ const DashboardWrapper = () => {
         </div>
         <Outlet />
       </div>
-      <img alt="" className="linkdot-logo" src={Logo} />
     </div>
   );
 };

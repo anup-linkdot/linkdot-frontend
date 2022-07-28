@@ -6,8 +6,8 @@ const SideBar = () => {
     // FIXME: Dashboard menu link currently pointing to `/dashboard/nobadge`, it should be `dashboard`
     {
       name: "Dashboard",
-      url: "/dashboard/nobadge",
-      path: "/dashboard/nobadge",
+      url: "/dashboard",
+      path: "/dashboard",
     },
     { name: "Badge Insight", url: "/insights", path: "/insights" },
   ];

@@ -1,6 +1,8 @@
+import PropTypes from "prop-types";
+
 import Logo from "../../assets/images/logo.png";
 
-const Badge = () => (
+const Badge = ({ title, description, image }) => (
   <div className="badge_detail">
     <div style={{ padding: "12px" }}>
       <div className="badge_title">
@@ -12,14 +14,12 @@ const Badge = () => (
             color: "white",
           }}
         >
-          Exhibited at UD 2022
+          {title}
         </span>
       </div>
-      <div
-        style={{
-          height: "100px",
-        }}
-      ></div>
+      <div>
+        <img alt="" style={{ height: "150px" }} width={"100%"} src={image} />
+      </div>
       <div
         style={{
           width: "100%",
@@ -33,10 +33,7 @@ const Badge = () => (
       >
         <span className="gradient_text">Participation#JUL2022</span>
       </div>
-      <span className="badge_description">
-        Exhibited at the 8-day art, tech and design festival Utopian dystopia
-        2022 alongside 10 top artists from the country.
-      </span>
+      <span className="badge_description">{description} </span>
       <div
         style={{
           marginTop: "30px",
@@ -50,3 +47,9 @@ const Badge = () => (
 );
 
 export default Badge;
+
+Badge.prototype = {
+  title: PropTypes.string.isRequired,
+  description: PropTypes.isRequired,
+  image: PropTypes.string.isRequired,
+};

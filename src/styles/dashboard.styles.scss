@@ -12,12 +12,13 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 30px
+    margin-bottom: 20px
 }
 
 .navbar-left-div {
     @extend .navbar-main;
     justify-content: flex-start;
+    cursor: pointer;
 
     .profile-name {
         color: white;
@@ -84,8 +85,7 @@
 
 .main-section-div {
     width: 100%;
-    min-height: 75vh;
-    display: flex;
+    min-height: 80vh;
     justify-content: center;
     align-items: center;
 }
@@ -120,7 +120,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-bottom: 35px;
+    padding-bottom: 20px;
 }
 
 .badge-section {

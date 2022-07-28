@@ -1,6 +1,7 @@
-import { Loader } from "./Loader";
+import { Loader } from "../Loader";
 import PropTypes from "prop-types";
 import moment from "moment";
+import { DataNotAvailable } from "../DataNotAvailable";
 
 export default function Table({ headerList, tableData, isLoading }) {
   // Show loading screen when loading state is true
@@ -47,16 +48,3 @@ Table.propTypes = {
   headerList: PropTypes.array.isRequired,
   tableData: PropTypes.array.isRequired,
 };
-
-const DataNotAvailable = () => (
-  <div
-    style={{
-      height: "100%",
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-    }}
-  >
-    <p style={{ color: "white", textAlign: "center" }}>Data not available</p>
-  </div>
-);

@@ -2,6 +2,7 @@ import React from "react";
 import { Outlet } from "react-router-dom";
 import "../../styles/dashboard.styles.scss";
 import SideBar from "./SideBar";
+import Logo from "../../assets/images/logo.png";
 
 const Main = () => {
   return (
@@ -13,6 +14,7 @@ const Main = () => {
         <div className="main-section-div">
           <Outlet />
         </div>
+        <img alt="" className="linkdot-logo" src={Logo} />
       </div>
     </div>
   );

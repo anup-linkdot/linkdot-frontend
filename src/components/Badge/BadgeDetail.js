@@ -1,158 +1,200 @@
-export const BadgeDetail = () => (
-  <div
-    style={{
-      width: "auto",
-      display: "flex",
-      flexDirection: "column",
-      justifyContent: "space-between",
-    }}
-  >
-    <p
-      // TODO: change font family to `'PingFang TC'`
-      className="gradient_text"
+import { PropTypes } from "prop-types";
+import Badge from ".";
+import BadgeCard from "./BadgeCard";
+
+export const BadgeDetail = ({ title, description, image }) => {
+  return (
+    <div
       style={{
-        fontSize: "16px",
-        lineHeight: "21px",
-        fontWeight: 600,
+        display: "flex",
+        justifyContent: "space-between",
+        width: "100%",
       }}
     >
-      Participation#JUL2022
-    </p>
-    <p
-      style={{
-        fontSize: "32px",
-        lineHeight: "48px",
-        fontWeight: 700,
-        color: "#FFFFFF",
-      }}
-    >
-      Exhibited at UD 2022
-    </p>
-    <p
-      style={{
-        fontSize: "20px",
-        lineHeight: "30px",
-        fontWeight: 400,
-        color: "#FFFFFF",
-      }}
-    >
-      Exhibited at the 8-day art, tech and design festival Utopian dystopia
-      <br />
-      2022 alongside 10 top artists from the country.
-    </p>
-    <div style={{ marginTop: "40px", width: "80%" }}>
       <div
         style={{
+          width: "auto",
           display: "flex",
+          flexDirection: "column",
           justifyContent: "space-between",
         }}
       >
-        <div>
-          <p
+        <p
+          // TODO: change font family to `'PingFang TC'`
+          className="gradient_text"
+          style={{
+            fontSize: "16px",
+            lineHeight: "21px",
+            fontWeight: 600,
+          }}
+        >
+          Participation#JUL2022
+        </p>
+        <p
+          style={{
+            fontSize: "32px",
+            lineHeight: "48px",
+            fontWeight: 700,
+            color: "#FFFFFF",
+          }}
+        >
+          {title}
+        </p>
+        <p
+          style={{
+            fontSize: "20px",
+            lineHeight: "30px",
+            fontWeight: 400,
+            color: "#FFFFFF",
+          }}
+        >
+          {description}
+        </p>
+        <div style={{ marginTop: "40px", width: "80%" }}>
+          <div
             style={{
-              color: "#8B8B8B",
-              fontSize: "14px",
-              lineHeight: "21px",
-              fontWeight: 400,
-              cursor: "pointer",
+              display: "flex",
+              justifyContent: "space-between",
             }}
           >
-            Category
-          </p>
-          <p
+            <div>
+              <p
+                style={{
+                  color: "#8B8B8B",
+                  fontSize: "14px",
+                  lineHeight: "21px",
+                  fontWeight: 400,
+                  cursor: "pointer",
+                }}
+              >
+                Category
+              </p>
+              <p
+                style={{
+                  marginTop: "10px",
+                  fontSize: "16px",
+                  lineHeight: "21px",
+                  fontWeight: 500,
+                  color: "#FFFFFF",
+                }}
+              >
+                Participation
+              </p>
+            </div>
+            <div>
+              <p
+                style={{
+                  color: "#8B8B8B",
+                  fontSize: "14px",
+                  lineHeight: "21px",
+                  fontWeight: 400,
+                  cursor: "pointer",
+                }}
+              >
+                Project
+              </p>
+              <p
+                style={{
+                  marginTop: "10px",
+                  fontSize: "16px",
+                  lineHeight: "21px",
+                  fontWeight: 500,
+                  color: "#FFFFFF",
+                }}
+              >
+                Polygon
+              </p>
+            </div>
+          </div>
+          {/* Bottom div */}
+          <div
             style={{
-              marginTop: "10px",
-              fontSize: "16px",
-              lineHeight: "21px",
-              fontWeight: 500,
-              color: "#FFFFFF",
+              display: "flex",
+              marginTop: "20px",
+              justifyContent: "space-between",
             }}
           >
-            Participation
-          </p>
-        </div>
-        <div>
-          <p
-            style={{
-              color: "#8B8B8B",
-              fontSize: "14px",
-              lineHeight: "21px",
-              fontWeight: 400,
-              cursor: "pointer",
-            }}
-          >
-            Project
-          </p>
-          <p
-            style={{
-              marginTop: "10px",
-              fontSize: "16px",
-              lineHeight: "21px",
-              fontWeight: 500,
-              color: "#FFFFFF",
-            }}
-          >
-            Polygon
-          </p>
+            <div>
+              <p
+                style={{
+                  color: "#8B8B8B",
+                  fontSize: "14px",
+                  lineHeight: "21px",
+                  fontWeight: 400,
+                  cursor: "pointer",
+                }}
+              >
+                Category
+              </p>
+              <p
+                style={{
+                  marginTop: "10px",
+                  fontSize: "16px",
+                  lineHeight: "21px",
+                  fontWeight: 500,
+                  color: "#FFFFFF",
+                }}
+              >
+                Participation
+              </p>
+            </div>
+            <div>
+              <p
+                style={{
+                  color: "#8B8B8B",
+                  fontSize: "14px",
+                  lineHeight: "21px",
+                  fontWeight: 400,
+                  cursor: "pointer",
+                }}
+              >
+                Project
+              </p>
+              <p
+                style={{
+                  marginTop: "10px",
+                  fontSize: "16px",
+                  lineHeight: "21px",
+                  fontWeight: 500,
+                  color: "#FFFFFF",
+                }}
+              >
+                Polygon
+              </p>
+            </div>
+          </div>
         </div>
       </div>
-      {/* Bottom div */}
-      <div
-        style={{
-          display: "flex",
-          marginTop: "20px",
-          justifyContent: "space-between",
-        }}
-      >
-        <div>
-          <p
+      <div style={{ width: "35%" }}>
+        <BadgeCard>
+          <div
             style={{
-              color: "#8B8B8B",
-              fontSize: "14px",
-              lineHeight: "21px",
-              fontWeight: 400,
-              cursor: "pointer",
+              padding: "20px 80px",
             }}
           >
-            Category
-          </p>
-          <p
-            style={{
-              marginTop: "10px",
-              fontSize: "16px",
-              lineHeight: "21px",
-              fontWeight: 500,
-              color: "#FFFFFF",
-            }}
-          >
-            Participation
-          </p>
-        </div>
-        <div>
-          <p
-            style={{
-              color: "#8B8B8B",
-              fontSize: "14px",
-              lineHeight: "21px",
-              fontWeight: 400,
-              cursor: "pointer",
-            }}
-          >
-            Project
-          </p>
-          <p
-            style={{
-              marginTop: "10px",
-              fontSize: "16px",
-              lineHeight: "21px",
-              fontWeight: 500,
-              color: "#FFFFFF",
-            }}
-          >
-            Polygon
-          </p>
-        </div>
+            <Badge image={image} />
+            <button
+              style={{
+                width: "100%",
+                marginTop: "15px",
+                boxShadow: "black 4px 5px 0px -1px, 4px 5px #FFFFFF",
+                padding: "8px",
+                background: "#FFFFFF",
+                color: "black",
+                border: "2px solid #FFFFFF",
+              }}
+            >
+              <p style={{ fontSize: "1rem", fontWeight: 600 }}>Issue To User</p>
+            </button>
+          </div>
+        </BadgeCard>
       </div>
     </div>
-  </div>
-);
+  );
+};
+
+BadgeDetail.prototype = {
+  title: PropTypes.string.isRequired,
+  description: PropTypes.isRequired,
+  image: PropTypes.string.isRequired,
+};

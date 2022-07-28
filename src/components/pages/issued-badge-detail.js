@@ -1,52 +1,49 @@
-import { useNavigate } from "react-router-dom";
-import Badge from "../Badge";
-import BadgeCard from "../Badge/BadgeCard";
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { getBadgeData } from "../../services/badge.service";
 import { BadgeDetail } from "../Badge/BadgeDetail";
 
+// TODO: A claimed badge should not appear in the /badge/issued/{id} page.
+
 export default function IssuedBadgeDetail() {
+  const [badge, setBadge] = useState(null);
+  const { id } = useParams();
+
+  const getBadgeDetail = async (badgeId) => {
+    try {
+      const response = await getBadgeData(badgeId);
+      console.log(response);
+      setBadge({
+        image: response.data.badge_img,
+        ...response.data.data,
+      });
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getBadgeDetail(id);
+  }, []);
+
   return (
     <div className="main-dashboard-div">
       <div className="main-row">
         <div
           style={{
             paddingLeft: "60px",
+            width: "100%",
           }}
         >
           <BackToDashbord />
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-            }}
-          >
-            <BadgeDetail />
-            <div style={{ width: "35%" }}>
-              <BadgeCard>
-                <div
-                  style={{
-                    padding: "20px 80px",
-                  }}
-                >
-                  <Badge />
-                  <button
-                    style={{
-                      width: "100%",
-                      marginTop: "15px",
-                      boxShadow: "black 4px 5px 0px -1px, 4px 5px #FFFFFF",
-                      padding: "12px",
-                      background: "#FFFFFF",
-                      color: "black",
-                      border: "2px solid #FFFFFF",
-                    }}
-                  >
-                    <p style={{ fontSize: "1rem", fontWeight: 600 }}>
-                      Issue To User
-                    </p>
-                  </button>
-                </div>
-              </BadgeCard>
-            </div>
-          </div>
+          {badge && (
+            <BadgeDetail
+              title={badge.name}
+              description={badge.description}
+              image={badge.image}
+            />
+          )}
         </div>
       </div>
     </div>

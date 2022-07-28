@@ -6,6 +6,8 @@ import {
 import { showAllBadge } from "../../../services/badge.service";
 import Table from "../../Table";
 import Tab from "../Tab";
+import "../../../styles/dashboard.styles.scss";
+import "../../../styles/insights.styles.scss";
 
 const InsightSection = () => {
   const tabList = [
@@ -23,9 +25,8 @@ const InsightSection = () => {
     try {
       const response = await showAllBadge(filterKey);
       if (response.status) {
-        console.log(response);
         setLoading(false);
-        setBadges([...badges, ...response.data.data]);
+        setBadges([...response.data]);
       } else {
         alert("Something went wrong. Try again!");
       }
@@ -41,19 +42,13 @@ const InsightSection = () => {
   return (
     <div className="insight-section-div">
       <Tab tabItems={tabList} activeTab={activeTab} switchTab={switchTab} />
-      {activeTab === "issued" ? (
-        <Table
-          headerList={InsightIssuedTable}
-          tableData={badges}
-          isLoading={loading}
-        />
-      ) : (
-        <Table
-          headerList={InsightClaimedTable}
-          tableData={badges}
-          isLoading={loading}
-        />
-      )}
+      <Table
+        headerList={
+          activeTab === "issued" ? InsightIssuedTable : InsightClaimedTable
+        }
+        tableData={badges}
+        isLoading={loading}
+      />
     </div>
   );
 };

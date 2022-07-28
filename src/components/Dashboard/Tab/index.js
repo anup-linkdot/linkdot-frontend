@@ -18,6 +18,7 @@ const Tab = ({ tabItems, activeTab, switchTab }) => {
       </div>
       <select placeholder="Sort by" className="select-option">
         <option disabled>Sort by</option>
+        <option value={"createdDate"}>Created Date</option>
       </select>
     </div>
   );

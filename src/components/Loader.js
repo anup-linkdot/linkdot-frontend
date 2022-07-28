@@ -1,4 +1,4 @@
-import BadgeLoad from "../../assets/images/badge-load.gif";
+import BadgeLoad from "../assets/images/badge-load.gif";
 
 export const Loader = () => (
   <div className="badges-section loading-badge-section">
