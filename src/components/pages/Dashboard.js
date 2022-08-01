@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { showAllBadge } from "../../services/badge.service";
-import { useNavigate } from "react-router-dom";
 import { BadgeList } from "../Badge/BadgeList";
 import Tab from "../Dashboard/Tab";
 import { useSelector } from "react-redux";
@@ -31,6 +30,7 @@ const Dashboard = () => {
       }
     } catch (error) {
       console.log(error);
+      setLoading(false);
     } finally {
       setLoading(false);
     }
