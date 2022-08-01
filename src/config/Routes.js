@@ -52,8 +52,6 @@ const Routing = () => (
         <Route path={"create/badge"} element={<CreateBadge />} />
         <Route path={"badge/preview"} element={<BadgePreview />} />
         <Route path={"badge/issue"} element={<IssueBadge />} />
-        <Route path={"insight"} element={<Insights />} />
-
         <Route path={"insights"} element={<InsightsPage />} />
         <Route path={"/badge/issued/:id"} element={<IssuedBadgeDetail />} />
         <Route path={"/badge/claimed/:id"} element={<IssuedBadgeDetail />} />

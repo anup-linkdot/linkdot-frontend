@@ -1,8 +1,10 @@
 import { PropTypes } from "prop-types";
+import { useNavigate } from "react-router-dom";
 import Badge from ".";
 import BadgeCard from "./BadgeCard";
 
 export const BadgeDetail = ({ title, description, image }) => {
+  const navigate = useNavigate();
   return (
     <div
       style={{
@@ -184,7 +186,12 @@ export const BadgeDetail = ({ title, description, image }) => {
                 border: "2px solid #FFFFFF",
               }}
             >
-              <p style={{ fontSize: "1rem", fontWeight: 600 }}>Issue To User</p>
+              <p
+                style={{ fontSize: "1rem", fontWeight: 600 }}
+                onClick={() => navigate("/badge/issue")}
+              >
+                Issue To User
+              </p>
             </button>
           </div>
         </BadgeCard>
