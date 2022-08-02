@@ -12,9 +12,7 @@
     }
 }
 
-.badge-div {
-    // width: 275px;
-}
+
 
 .badge-img {
     position: relative;
@@ -419,4 +417,10 @@ select:disabled {
     margin-top: 30px;
     margin-bottom: 30px;
     text-align: center;
+}
+.badge-description {
+    display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
 }

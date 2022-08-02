@@ -35,9 +35,6 @@ const DashboardWrapper = () => {
       if (user_response.status === true) {
         console.log("", user_response.data);
         dispatch(setUserData(user_response.data));
-        setTimeout(() => {
-          // navigate("/dashboard/nobadge");
-        }, 1000);
       }
     } else {
       navigate("/");
@@ -58,7 +55,7 @@ const DashboardWrapper = () => {
         <div className="navbar-main">
           <div
             className="navbar-left-div"
-            onClick={() => navigate("/dashboard/")}
+            onClick={() => navigate("/dashboard")}
           >
             <img src={Profile} alt="" />
             <p className="profile-name">{userReducer.user?.user_name}</p>

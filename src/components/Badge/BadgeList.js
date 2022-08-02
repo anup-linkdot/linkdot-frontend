@@ -12,7 +12,6 @@ export const BadgeList = ({ badgeList, badgeDetailUrl }) => {
     <div
       style={{
         width: "100%",
-        height: "400px",
         display: "grid",
         gridTemplateColumns: "1fr 1fr 1fr",
         columnGap: "20px", // figma design contains 40px

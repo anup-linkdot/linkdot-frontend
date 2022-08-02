@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import "../../styles/dashboard.styles.scss";
 import "../../styles/badge.styles.scss";
@@ -15,23 +15,29 @@ const BadgePreview = () => {
   const dispatch = useDispatch();
   const ref = useRef();
 
-  const updateBadgeMintImage = useCallback(() => {
+  const updateBadgeMintImage = useCallback(async () => {
+    /**
+     * This code takes screen shot of the html node of the badge from the DOM,
+     * converts into a jpeg/base64 format,
+     * Send this image to back-end.
+     *
+     * If the api call responds with success, reidrect to badge issue page.
+     * NOTE: The code will only create a usable image url only if the node is visible in the DOM.
+     */
     if (ref.current === null) {
       return;
     }
 
-    toJpeg(ref.current, { cacheBust: true })
-      .then((dataUrl) => {
-        const payload = {
-          mint_image: dataUrl,
-          image_type: "image/jpeg;base64",
-          image_name: userReducer.badge.data._id,
-        };
-        updateBadge(userReducer.badge.data._id, payload);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    const dataUrl = await toJpeg(ref.current, { cacheBust: true });
+    const payload = {
+      mint_image: dataUrl,
+      image_type: "image/jpeg;base64",
+      image_name: userReducer.badge.data._id,
+    };
+    try {
+      const response = await updateBadge(userReducer.badge.data._id, payload);
+      if (response.status) navigate("badge/issue");
+    } catch (error) {}
   }, [ref]);
 
   useEffect(() => {
@@ -94,7 +100,7 @@ const BadgePreview = () => {
         </button>
         <button
           className="create-badge-btn issue-btn issue-now"
-          onClick={() => navigate("/badge/issue")}
+          onClick={() => updateBadgeMintImage()}
         >
           Issue to user
         </button>

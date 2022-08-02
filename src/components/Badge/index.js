@@ -1,11 +1,18 @@
 import PropTypes from "prop-types";
-import React, { useCallback, useRef } from "react";
+import React from "react";
 import Logo from "../../assets/images/logo.png";
 
 const Badge = ({ title, description, image }) => {
   return (
     <div className="badge_detail">
-      <div style={{ padding: "12px" }}>
+      <div
+        style={{
+          padding: "12px",
+          display: "flex",
+          justifyContent: "space-between",
+          flexDirection: "column",
+        }}
+      >
         <div className="badge_title">
           <span
             style={{
@@ -18,8 +25,14 @@ const Badge = ({ title, description, image }) => {
             {title}
           </span>
         </div>
-        <div>
-          <img alt="" style={{ height: "150px" }} width={"100%"} src={image} />
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            marginBottom: "20px",
+          }}
+        >
+          <img alt="" style={{ height: "150px" }} width={"150px"} src={image} />
         </div>
         <div
           style={{
@@ -34,7 +47,9 @@ const Badge = ({ title, description, image }) => {
         >
           <span className="gradient_text">Participation#JUL2022</span>
         </div>
-        <span className="badge_description">{description} </span>
+        <span style={{ height: "40px" }} className="badge_description">
+          {description}
+        </span>
         <div
           style={{
             marginTop: "30px",
