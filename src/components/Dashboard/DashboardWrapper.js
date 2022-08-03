@@ -28,7 +28,6 @@ const DashboardWrapper = () => {
 
   const getNewToken = async () => {
     const token = getStorage("token");
-    console.log("token -- ", token);
     if (token) {
       //call api to get user data
       const user_response = await getUserDetails();

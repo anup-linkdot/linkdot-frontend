@@ -28,6 +28,7 @@ const Dashboard = () => {
       } else {
         alert("Something went wrong. Try again!");
       }
+      setLoading(false);
     } catch (error) {
       console.log(error);
       setLoading(false);
