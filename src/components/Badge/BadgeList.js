@@ -9,6 +9,13 @@ export const BadgeList = ({ badgeList, badgeDetailUrl }) => {
   const navigate = useNavigate();
   if (!badgeList.length) return <DataNotAvailable />;
 
+  const redirectToDetailPage = (badge_id) => {
+    if (badgeDetailUrl) {
+      navigate(`${badgeDetailUrl}/${badge_id}`);
+    }
+    return null;
+  };
+
   return (
     <div
       style={{
@@ -30,7 +37,7 @@ export const BadgeList = ({ badgeList, badgeDetailUrl }) => {
                 justifyContent: "space-between",
               }}
             >
-              <div onClick={() => navigate(`${badgeDetailUrl}/${badge._id}`)}>
+              <div onClick={() => redirectToDetailPage(badge._id)}>
                 <Badge
                   title={badge.name}
                   description={badge.description}
@@ -56,7 +63,7 @@ export const BadgeList = ({ badgeList, badgeDetailUrl }) => {
                     color: "black",
                     border: "2px solid #FFFFFF",
                   }}
-                  onClick={() => navigate(`${badgeDetailUrl}/${badge._id}`)}
+                  onClick={() => redirectToDetailPage(badge._id)}
                 >
                   <p style={{ fontSize: "1rem", fontWeight: 600 }}>Insight</p>
                 </button>
@@ -85,5 +92,5 @@ export const BadgeList = ({ badgeList, badgeDetailUrl }) => {
 
 BadgeList.propTypes = {
   badgeList: PropTypes.array.isRequired,
-  badgeDetailUrl: PropTypes.string.isRequired,
+  badgeDetailUrl: PropTypes.string,
 };

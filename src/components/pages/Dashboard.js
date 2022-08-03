@@ -23,8 +23,26 @@ const Dashboard = () => {
       setLoading(true);
       const response = await showAllBadge(filterKey);
       if (response.status) {
+        console.log(response.data);
         setLoading(false);
-        setBadges(response.data);
+        if (filterKey === "claimed") {
+          // wrong response structure recieving for claimed badges
+          const badgesArray = [];
+          response.data.map((badge) => {
+            badgesArray.push({
+              name: badge.badge_id.name,
+              badge_type: badge.badge_id.badge_type,
+              created_at: badge.badge_id.created_at,
+              _id: badge.badge_id._id,
+              image: badge.badge_id.image,
+              description: badge.badge_id.description,
+            });
+            console.log(badgesArray);
+          });
+          setBadges(badgesArray);
+        } else {
+          setBadges(response.data);
+        }
       } else {
         alert("Something went wrong. Try again!");
       }
@@ -55,7 +73,7 @@ const Dashboard = () => {
         {!loading && activeTab === "issued" && badges.length ? (
           <BadgeList badgeList={badges} badgeDetailUrl={`/badge/issued`} />
         ) : activeTab === "claimed" ? (
-          <BadgeList badgeList={badges} badgeDetailUrl={`/badge/claimed`} />
+          <BadgeList badgeList={badges} />
         ) : (
           <NoBadge userName={userReducer.user.user_name} />
         )}
