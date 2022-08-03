@@ -1,8 +1,9 @@
+import moment from "moment";
 import PropTypes from "prop-types";
 import React from "react";
 import Logo from "../../assets/images/logo.png";
 
-const Badge = ({ title, description, image }) => {
+const Badge = ({ title, description, image, badge_type, created_at }) => {
   return (
     <div className="badge_detail">
       <div
@@ -45,7 +46,9 @@ const Badge = ({ title, description, image }) => {
             marginBottom: "20px",
           }}
         >
-          <span className="gradient_text">Participation#JUL2022</span>
+          <span className="gradient_text">
+            {badge_type}#{moment(created_at).format("MMMYYYY")}
+          </span>
         </div>
         <span style={{ height: "40px" }} className="badge_description">
           {description}
@@ -69,4 +72,6 @@ Badge.prototype = {
   title: PropTypes.string.isRequired,
   description: PropTypes.isRequired,
   image: PropTypes.string.isRequired,
+  badge_type: PropTypes.string.isRequired,
+  created_at: PropTypes.string.isRequired,
 };

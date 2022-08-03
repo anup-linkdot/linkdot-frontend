@@ -1,10 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import "../../styles/dashboard.styles.scss";
 import Profile from "../../assets/images/profile.png";
-import Settings from "../../assets/images/Settings.png";
-import { getStorage, setStorage } from "../../utils/auth-utils";
-import { getToken } from "../../services/auth.service";
+import { getStorage } from "../../utils/auth-utils";
 import { getUserDetails } from "../../services/user.service";
 import { logoutUser, setUserData } from "../../redux/actions/auth";
 import { useDispatch, useSelector } from "react-redux";

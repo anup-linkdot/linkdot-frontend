@@ -5,6 +5,7 @@ import { DataNotAvailable } from "../DataNotAvailable";
 import BadgeCard from "./BadgeCard";
 
 export const BadgeList = ({ badgeList, badgeDetailUrl }) => {
+  console.log(badgeList);
   const navigate = useNavigate();
   if (!badgeList.length) return <DataNotAvailable />;
 
@@ -34,6 +35,8 @@ export const BadgeList = ({ badgeList, badgeDetailUrl }) => {
                   title={badge.name}
                   description={badge.description}
                   image={badge.image}
+                  badge_type={badge.badge_type}
+                  created_at={badge.created_at}
                 />
               </div>
 

@@ -14,10 +14,10 @@ let persistor = persistStore(store);
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <ThirdwebProvider
-    desiredChainId={ChainId.Mainnet}
+    desiredChainId={ChainId.Polygon}
     walletConnectors={[
       "walletConnect",
-      { name: "injected", options: { shimDisconnect: true } },
+      { name: "injected", options: { shimDisconnect: false } },
       {
         name: "walletLink",
         options: {

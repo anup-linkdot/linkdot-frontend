@@ -1,9 +1,16 @@
+import moment from "moment";
 import { PropTypes } from "prop-types";
 import { useNavigate } from "react-router-dom";
 import Badge from ".";
 import BadgeCard from "./BadgeCard";
 
-export const BadgeDetail = ({ title, description, image }) => {
+export const BadgeDetail = ({
+  title,
+  description,
+  image,
+  badge_type,
+  created_at,
+}) => {
   const navigate = useNavigate();
   return (
     <div
@@ -30,7 +37,7 @@ export const BadgeDetail = ({ title, description, image }) => {
             fontWeight: 600,
           }}
         >
-          Participation#JUL2022
+          {badge_type}#{moment(created_at).format("MMMYYYY")}
         </p>
         <p
           style={{
@@ -80,7 +87,7 @@ export const BadgeDetail = ({ title, description, image }) => {
                   color: "#FFFFFF",
                 }}
               >
-                Participation
+                {badge_type}
               </p>
             </div>
             <div>
@@ -171,10 +178,16 @@ export const BadgeDetail = ({ title, description, image }) => {
         <BadgeCard>
           <div
             style={{
-              padding: "20px 80px",
+              padding: "20px 35px",
             }}
           >
-            <Badge image={image} />
+            <Badge
+              image={image}
+              title={title}
+              description={description}
+              badge_type={badge_type}
+              created_at={created_at}
+            />
             <button
               style={{
                 width: "100%",

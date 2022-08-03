@@ -42,6 +42,8 @@ export default function IssuedBadgeDetail() {
               title={badge.name}
               description={badge.description}
               image={badge.image}
+              badge_type={badge.badge_type}
+              created_at={badge.created_at}
             />
           )}
         </div>
