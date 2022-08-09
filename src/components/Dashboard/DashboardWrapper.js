@@ -8,14 +8,13 @@ import { logoutUser, setUserData } from "../../redux/actions/auth";
 import { useDispatch, useSelector } from "react-redux";
 import { useAddress, useDisconnect } from "@thirdweb-dev/react";
 import DropDown from "./Dropdown";
+import { NavBar } from "./NavBar";
 
 // Modal.setAppElement('#yourAppElement');
 
 const DashboardWrapper = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const userReducer = useSelector((state) => state.userReducer);
-  const disconnect = useDisconnect();
   const address = useAddress();
 
   useEffect(() => {
@@ -38,41 +37,10 @@ const DashboardWrapper = () => {
     }
   };
 
-  const logoutUserNav = () => {
-    dispatch(logoutUser());
-    localStorage.removeItem("token");
-    localStorage.removeItem("refresh_token");
-    localStorage.removeItem("wallet_id");
-    disconnect();
-  };
-
   return (
     <div className="dashboard-main-div">
       <div className="dashboard-template">
-        <div className="navbar-main">
-          <div
-            className="navbar-left-div"
-            onClick={() => navigate("/dashboard")}
-          >
-            <img src={Profile} alt="" />
-            <p className="profile-name">{userReducer.user?.user_name}</p>
-          </div>
-          <div className="navbar-right-div">
-            <button
-              className="metamask-btn creator-btn create-badge-btn-navbar"
-              onClick={() => navigate("/create/badge")}
-              style={{
-                boxShadow: "#0f1018 4px 5px 0px -1px, 4px 5px #FFFFFF",
-                border: "none",
-                fontSize: "1rem",
-                lineHeight: "1.5rem",
-              }}
-            >
-              <p>Create Badge</p>
-            </button>
-            <DropDown disconnect={logoutUserNav} />
-          </div>
-        </div>
+        <NavBar />
         <Outlet />
       </div>
     </div>

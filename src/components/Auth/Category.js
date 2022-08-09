@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { userType } from "../../services/auth.service";
 import { getStorage } from "../../utils/auth-utils";
+import { AuthWrapper } from "./AuthWrapper";
 
 const Category = () => {
   const navigate = useNavigate();
@@ -21,8 +22,8 @@ const Category = () => {
   };
 
   return (
-    <div className="intro-community-div loader-div">
-      <div className="intro-left-div loader-left-div">
+    <AuthWrapper>
+      <div>
         <p className="get-started-text complete-reg-text">
           Complete your <br />
           Registration
@@ -31,8 +32,13 @@ const Category = () => {
           select your category
         </p>
       </div>
-      <div className="vertical-line category-line"></div>
-      <div className="intro-right-div loader-right-div">
+      <div
+        style={{
+          margin: "0px 40px",
+        }}
+        className="vertical-line category-line"
+      ></div>
+      <div>
         <button
           className="metamask-btn creator-btn"
           onClick={() => setCategory("NFT_Artist")}
@@ -74,7 +80,7 @@ const Category = () => {
           <p>Contributor</p>
         </button>
       </div>
-    </div>
+    </AuthWrapper>
   );
 };
 

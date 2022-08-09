@@ -75,7 +75,7 @@ export const BadgeList = ({ badgeList, badgeDetailUrl }) => {
                     color: "white",
                     border: "2px solid #FFFFFF",
                   }}
-                  onClick={() => navigate("/badge/issue")}
+                  onClick={() => navigate(`/badge/issue/${badge._id}`)}
                 >
                   <p style={{ fontSize: "1rem", fontWeight: 600 }}>
                     Issue To User

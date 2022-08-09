@@ -10,6 +10,7 @@ export const BadgeDetail = ({
   image,
   badge_type,
   created_at,
+  _id,
 }) => {
   const navigate = useNavigate();
   return (
@@ -18,6 +19,7 @@ export const BadgeDetail = ({
         display: "flex",
         justifyContent: "space-between",
         width: "100%",
+        paddingTop: "20px",
       }}
     >
       <div
@@ -28,37 +30,41 @@ export const BadgeDetail = ({
           justifyContent: "space-between",
         }}
       >
-        <p
-          // TODO: change font family to `'PingFang TC'`
-          className="gradient_text"
-          style={{
-            fontSize: "16px",
-            lineHeight: "21px",
-            fontWeight: 600,
-          }}
-        >
-          {badge_type}#{moment(created_at).format("MMMYYYY")}
-        </p>
-        <p
-          style={{
-            fontSize: "32px",
-            lineHeight: "48px",
-            fontWeight: 700,
-            color: "#FFFFFF",
-          }}
-        >
-          {title}
-        </p>
-        <p
-          style={{
-            fontSize: "20px",
-            lineHeight: "30px",
-            fontWeight: 400,
-            color: "#FFFFFF",
-          }}
-        >
-          {description}
-        </p>
+        <div style={{}}>
+          <p
+            // TODO: change font family to `'PingFang TC'`
+            className="gradient_text"
+            style={{
+              fontSize: "16px",
+              lineHeight: "21px",
+              fontWeight: 600,
+              marginBottom: "16px",
+            }}
+          >
+            {badge_type}#{moment(created_at).format("MMMYYYY")}
+          </p>
+          <p
+            style={{
+              fontSize: "32px",
+              lineHeight: "48px",
+              fontWeight: 700,
+              color: "#FFFFFF",
+              marginBottom: "24px",
+            }}
+          >
+            {title}
+          </p>
+          <p
+            style={{
+              fontSize: "20px",
+              lineHeight: "30px",
+              fontWeight: 400,
+              color: "#FFFFFF",
+            }}
+          >
+            {description}
+          </p>
+        </div>
         <div style={{ marginTop: "40px", width: "80%" }}>
           <div
             style={{
@@ -123,7 +129,7 @@ export const BadgeDetail = ({
               justifyContent: "space-between",
             }}
           >
-            <div>
+            {/* <div>
               <p
                 style={{
                   color: "#8B8B8B",
@@ -133,7 +139,7 @@ export const BadgeDetail = ({
                   cursor: "pointer",
                 }}
               >
-                Category
+                BadgeNo
               </p>
               <p
                 style={{
@@ -144,7 +150,7 @@ export const BadgeDetail = ({
                   color: "#FFFFFF",
                 }}
               >
-                Participation
+                {}
               </p>
             </div>
             <div>
@@ -157,7 +163,7 @@ export const BadgeDetail = ({
                   cursor: "pointer",
                 }}
               >
-                Project
+                Number of People Issued
               </p>
               <p
                 style={{
@@ -170,7 +176,7 @@ export const BadgeDetail = ({
               >
                 Polygon
               </p>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
@@ -201,7 +207,7 @@ export const BadgeDetail = ({
             >
               <p
                 style={{ fontSize: "1rem", fontWeight: 600 }}
-                onClick={() => navigate("/badge/issue")}
+                onClick={() => navigate(`/badge/issue/${_id}`)}
               >
                 Issue To User
               </p>
@@ -217,4 +223,5 @@ BadgeDetail.prototype = {
   title: PropTypes.string.isRequired,
   description: PropTypes.isRequired,
   image: PropTypes.string.isRequired,
+  _id: PropTypes.string.isRequired,
 };

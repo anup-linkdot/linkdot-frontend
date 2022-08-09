@@ -4,6 +4,8 @@ import Routing from "./config/Routes";
 import store from "./redux/store/store";
 import { Provider } from "react-redux";
 import "./index.scss";
+import "./index.css";
+
 import reportWebVitals from "./reportWebVitals";
 import { PersistGate } from "redux-persist/integration/react";
 import { persistStore } from "redux-persist";
