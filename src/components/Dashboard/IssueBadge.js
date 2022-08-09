@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Outlet, useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Outlet, useNavigate, useParams } from "react-router-dom";
 import "../../styles/dashboard.styles.scss";
 import "../../styles/badge.styles.scss";
 import BadgeTemp from "../../assets/images/badge-template.png";
@@ -7,12 +7,14 @@ import Info from "../../assets/images/info.png";
 import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
 import Papa from "papaparse";
-import { issueBadge } from "../../services/badge.service";
+import { getBadgeData, issueBadge } from "../../services/badge.service";
 import Loader from "../../assets/images/loader.png";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import FileSVG from "../../assets/svg/file-text.svg";
 const IssueBadge = () => {
+  const { id } = useParams();
+
   const navigate = useNavigate();
   const userReducer = useSelector((state) => state.userReducer);
   const dispatch = useDispatch();
@@ -20,6 +22,19 @@ const IssueBadge = () => {
   const [csv_upload, setUploadCSV] = useState(false);
   const [emails, setEmails] = useState("");
   const [loader, setLoader] = useState(false);
+  const [badgeData, setBadgeData] = useState();
+
+  async function getBadgeDetail() {
+    const response = await getBadgeData(id);
+    console.log(response);
+    if (response) {
+      setBadgeData({
+        ...badgeData,
+        ...response.data.data,
+        badge_img: response.data.badge_img,
+      });
+    }
+  }
 
   const clickInput = () => {
     document.getElementById("getFile").click();
@@ -67,18 +82,21 @@ const IssueBadge = () => {
     }
   };
 
+  useEffect(() => {
+    getBadgeDetail();
+  }, []);
+
   return (
     <div className="issue-badge-div" style={{ fontFamily: "Poppins" }}>
       <div className="issue-badge-row">
         <div className="badge-div badge-preview">
           <div className="badge-img">
-            <img alt="" src={userReducer.badge?.badge_img} />
-            <p className="badge-id">
-              ID No-{userReducer.badge?.data?._id.substring(19, 24)}
-            </p>
+            {badgeData?.badge_img && <img alt="" src={badgeData.badge_img} />}
+
+            <p className="badge-id">ID No-{badgeData?._id.substring(19, 24)}</p>
             <p className="badge-type">
               Badge Type#
-              {moment(userReducer.badge?.data?.created_at).format("MMYYYY")}
+              {moment(badgeData?.created_at).format("MMYYYY")}
             </p>
           </div>
           <div className="badge-desc">
@@ -86,14 +104,12 @@ const IssueBadge = () => {
               <tr className="badge-data">
                 <td className="">Badage Name</td>
                 <td className="dot-badge">:</td>
-                <td className="badge-value">{userReducer.badge?.data?.name}</td>
+                <td className="badge-value">{badgeData?.name}</td>
               </tr>
               <tr className="badge-data">
                 <td className="">Badage Description</td>
                 <td>:</td>
-                <td className="badge-value">
-                  {userReducer.badge?.data?.description}
-                </td>
+                <td className="badge-value">{badgeData?.description}</td>
               </tr>
             </table>
           </div>
@@ -104,8 +120,19 @@ const IssueBadge = () => {
             <button
               className="badge-input badge-input-file upload-btn"
               onClick={() => clickInput()}
+              style={{ padding: "0px 10px", color: "white" }}
             >
-              <p>Upload CSV</p>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  color: "white",
+                  fontSize: "14px",
+                }}
+              >
+                <p>Upload CSV</p>
+                <img src={FileSVG} />
+              </div>
             </button>
             <input
               type="file"

@@ -36,7 +36,8 @@ const BadgePreview = () => {
     };
     try {
       const response = await updateBadge(userReducer.badge.data._id, payload);
-      if (response.status) navigate("badge/issue");
+      if (response.status)
+        navigate(`/badge/issue/${userReducer.badge.data._id}`);
     } catch (error) {}
   }, [ref]);
 
@@ -63,13 +64,15 @@ const BadgePreview = () => {
       <p className="preview-text">Preview</p>
       <div className="badge-div badge-preview">
         <div ref={ref}>
-          <Badge
-            title={userReducer.badge.data.name}
-            description={userReducer.badge.data.description}
-            image={userReducer.badge.badge_img}
-            badge_type={userReducer.badge.badge_type}
-            created_at={userReducer.badge.created_at}
-          />
+          {userReducer.badge && (
+            <Badge
+              title={userReducer.badge.data.name}
+              description={userReducer.badge.data.description}
+              image={userReducer.badge.badge_img}
+              badge_type={userReducer.badge.badge_type}
+              created_at={userReducer.badge.created_at}
+            />
+          )}
         </div>
 
         {/* <div className='badge-img'>

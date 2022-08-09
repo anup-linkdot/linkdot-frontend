@@ -33,7 +33,12 @@ const Badge = ({ title, description, image, badge_type, created_at }) => {
             marginBottom: "20px",
           }}
         >
-          <img alt="" style={{ height: "150px" }} width={"150px"} src={image} />
+          <img
+            className="mask mask-hexagon"
+            style={{ height: "150px" }}
+            width={"150px"}
+            src={image}
+          />
         </div>
         <div
           style={{
@@ -50,16 +55,21 @@ const Badge = ({ title, description, image, badge_type, created_at }) => {
             {badge_type}#{moment(created_at).format("MMMYYYY")}
           </span>
         </div>
-        <span style={{ height: "40px" }} className="badge_description">
+        <span
+          style={{ height: "40px", overflow: "hidden" }}
+          className="badge_description"
+        >
           {description}
         </span>
         <div
           style={{
             marginTop: "30px",
             textAlign: "center",
+            display: "flex",
+            justifyContent: "center",
           }}
         >
-          <img alt="" height={10} src={Logo} />
+          <img alt="" style={{ height: "10px" }} src={Logo} />
         </div>
       </div>
     </div>

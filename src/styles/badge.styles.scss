@@ -152,7 +152,7 @@ select:disabled {
 }
 
 .badge-input {
-    width: 91.5%;
+    width: 100%;
     border: 1px solid white;
     font-family: "Poppins-Regular";
     color: white;
@@ -168,8 +168,7 @@ select:disabled {
 
 .badge-description {
     @extend .badge-input;
-    width: 91.5%;
-    height: 20px;
+    width: 100%;
     padding: 20px 20px;
     margin-bottom: 8px;
 }

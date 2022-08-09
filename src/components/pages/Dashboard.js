@@ -18,12 +18,24 @@ const Dashboard = () => {
 
   const switchTab = (key) => setActiveTab(key);
 
+  function sortBadgeData(sortKey) {
+    console.log(badges[0][`${sortKey}`]);
+    const acceptedKeys = ["name", "created_at"];
+    if (!sortKey in acceptedKeys) {
+      throw new Error(`Cannot sort using  key:${sortKey}`);
+    }
+    const sortedBadges = [...badges].sort((a, b) =>
+      a[sortKey].localeCompare(b[sortKey])
+    );
+
+    setBadges(sortedBadges);
+  }
+
   const getBadges = async (filterKey) => {
     try {
       setLoading(true);
       const response = await showAllBadge(filterKey);
       if (response.status) {
-        console.log(response.data);
         setLoading(false);
         if (filterKey === "claimed") {
           // wrong response structure recieving for claimed badges
@@ -37,7 +49,6 @@ const Dashboard = () => {
               image: badge.badge_id.image,
               description: badge.badge_id.description,
             });
-            console.log(badgesArray);
           });
           setBadges(badgesArray);
         } else {
@@ -67,7 +78,12 @@ const Dashboard = () => {
       }}
     >
       <div className="insight-section-div">
-        <Tab tabItems={tabList} activeTab={activeTab} switchTab={switchTab} />
+        <Tab
+          tabItems={tabList}
+          activeTab={activeTab}
+          switchTab={switchTab}
+          sort={sortBadgeData}
+        />
         {/* if issued badges are empty return <NoBadge/> component.
         If claimed badges are empty <DataNotAvailable/> component is returned by default */}
         {!loading && activeTab === "issued" && badges.length ? (

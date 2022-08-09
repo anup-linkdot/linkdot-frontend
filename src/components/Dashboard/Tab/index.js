@@ -1,6 +1,9 @@
-import PropTypes from "prop-types";
+import PropTypes, { func } from "prop-types";
 
-const Tab = ({ tabItems, activeTab, switchTab }) => {
+const Tab = ({ tabItems, activeTab, switchTab, sort }) => {
+  function handleChange(e) {
+    sort(e.target.value);
+  }
   return (
     <div className="badge-navbar">
       <div className="badge-section">
@@ -16,9 +19,16 @@ const Tab = ({ tabItems, activeTab, switchTab }) => {
           </div>
         ))}
       </div>
-      <select placeholder="Sort by" className="select-option">
-        <option disabled>Sort by</option>
-        <option value={"createdDate"}>Created Date</option>
+      <select
+        placeholder="Sort by"
+        className="select-option"
+        onChange={handleChange}
+      >
+        <option selected disabled>
+          Sort by
+        </option>
+        <option value={"created_at"}>Created Date</option>
+        <option value={"name"}>Name</option>
       </select>
     </div>
   );
@@ -30,4 +40,5 @@ Tab.propTypes = {
   tabItems: PropTypes.array.isRequired,
   activeTab: PropTypes.string.isRequired,
   switchTab: PropTypes.func,
+  sort: PropTypes.func,
 };

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { walletConnect } from "../../services/auth.service";
 import { setStorage } from "../../utils/auth-utils";
 import { useAddress, useChainId } from "@thirdweb-dev/react";
-import Connect from "./Connect";
+import Connect, { ConnectComponent } from "./Connect";
 
 const Intro = () => {
   const navigate = useNavigate();
@@ -38,7 +38,7 @@ const Intro = () => {
     }
   }, [address]);
 
-  return <Connect />;
+  return <ConnectComponent />;
 };
 
 export default Intro;
