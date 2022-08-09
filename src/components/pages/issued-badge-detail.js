@@ -53,7 +53,7 @@ export default function IssuedBadgeDetail() {
   );
 }
 
-const BackToDashbord = () => {
+export const BackToDashbord = () => {
   const navigate = useNavigate();
   return (
     <p

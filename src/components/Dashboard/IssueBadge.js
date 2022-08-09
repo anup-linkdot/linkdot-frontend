@@ -12,6 +12,7 @@ import Loader from "../../assets/images/loader.png";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import FileSVG from "../../assets/svg/file-text.svg";
+import { BackToDashbord } from "../pages/issued-badge-detail";
 const IssueBadge = () => {
   const { id } = useParams();
 
@@ -87,96 +88,101 @@ const IssueBadge = () => {
   }, []);
 
   return (
-    <div className="issue-badge-div" style={{ fontFamily: "Poppins" }}>
-      <div className="issue-badge-row">
-        <div className="badge-div badge-preview">
-          <div className="badge-img">
-            {badgeData?.badge_img && <img alt="" src={badgeData.badge_img} />}
+    <div>
+      <BackToDashbord />
+      <div className="issue-badge-div" style={{ fontFamily: "Poppins" }}>
+        <div className="issue-badge-row">
+          <div className="badge-div badge-preview">
+            <div className="badge-img">
+              {badgeData?.badge_img && <img alt="" src={badgeData.badge_img} />}
 
-            <p className="badge-id">ID No-{badgeData?._id.substring(19, 24)}</p>
-            <p className="badge-type">
-              Badge Type#
-              {moment(badgeData?.created_at).format("MMYYYY")}
-            </p>
+              <p className="badge-id">
+                ID No-{badgeData?._id.substring(19, 24)}
+              </p>
+              <p className="badge-type">
+                Badge Type#
+                {moment(badgeData?.created_at).format("MMYYYY")}
+              </p>
+            </div>
+            <div className="badge-desc">
+              <table>
+                <tr className="badge-data">
+                  <td className="">Badage Name</td>
+                  <td className="dot-badge">:</td>
+                  <td className="badge-value">{badgeData?.name}</td>
+                </tr>
+                <tr className="badge-data">
+                  <td className="">Badage Description</td>
+                  <td>:</td>
+                  <td className="badge-value">{badgeData?.description}</td>
+                </tr>
+              </table>
+            </div>
           </div>
-          <div className="badge-desc">
-            <table>
-              <tr className="badge-data">
-                <td className="">Badage Name</td>
-                <td className="dot-badge">:</td>
-                <td className="badge-value">{badgeData?.name}</td>
-              </tr>
-              <tr className="badge-data">
-                <td className="">Badage Description</td>
-                <td>:</td>
-                <td className="badge-value">{badgeData?.description}</td>
-              </tr>
-            </table>
-          </div>
-        </div>
 
-        <div className="issue-badge-ops">
-          <div className="upload-btn-div">
-            <button
-              className="badge-input badge-input-file upload-btn"
-              onClick={() => clickInput()}
-              style={{ padding: "0px 10px", color: "white" }}
-            >
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  color: "white",
-                  fontSize: "14px",
-                }}
+          <div className="issue-badge-ops">
+            <div className="upload-btn-div">
+              <button
+                className="badge-input badge-input-file upload-btn"
+                onClick={() => clickInput()}
+                style={{ padding: "0px 10px", color: "white" }}
               >
-                <p>Upload CSV</p>
-                <img src={FileSVG} />
-              </div>
-            </button>
-            <input
-              type="file"
-              id="getFile"
-              accept={".csv"}
-              onChange={(e) => getCSVFile(e.target.files[0])}
-            />
-            <img
-              alt=""
-              className="info-img"
-              src={Info}
-              onClick={() => setShowHover(!show_hover)}
-            />
-            {show_hover === true && (
-              <div className="info-hover-div">
-                <p>
-                  Please upload csv with header as 'Email ID' and all the emails
-                  in the below rows
-                </p>
-              </div>
-            )}
-            <p className="or-text">or</p>
-          </div>
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    color: "white",
+                    fontSize: "14px",
+                  }}
+                >
+                  <p>Upload CSV</p>
+                  <img src={FileSVG} />
+                </div>
+              </button>
+              <input
+                type="file"
+                id="getFile"
+                accept={".csv"}
+                onChange={(e) => getCSVFile(e.target.files[0])}
+              />
+              <img
+                alt=""
+                className="info-img"
+                src={Info}
+                onClick={() => setShowHover(!show_hover)}
+              />
+              {show_hover === true && (
+                <div className="info-hover-div">
+                  <p>
+                    Please upload csv with header as 'Email ID' and all the
+                    emails in the below rows
+                  </p>
+                </div>
+              )}
+              <p className="or-text">or</p>
+            </div>
 
-          <textarea
-            className="badge-description issue-email-textarea"
-            placeholder="Enter User Email IDs, separated by comma"
-            defaultValue={emails}
-            onChange={(e) => setEmails(e.target.value)}
-          ></textarea>
-          <p className="email-text">
-            Enter User Email ID separated by comma or upload CSV file for bulk
-            Share, click file icon for Uploading CSV file
-          </p>
-          {loader === false ? (
-            <button className="share-badge-btn" onClick={() => shareBadge()}>
-              Share Badge
-            </button>
-          ) : (
-            <button className="share-badge-btn loading-share-badge" disabled>
-              <img alt="" src={Loader} />
-              Sharing Now
-            </button>
-          )}
+            <textarea
+              className="badge-description issue-email-textarea"
+              placeholder="Enter User Email IDs, separated by comma"
+              defaultValue={emails}
+              onChange={(e) => setEmails(e.target.value)}
+            ></textarea>
+            <p className="email-text">
+              Enter User Email ID separated by comma or upload CSV file for bulk
+              Share, click file icon for Uploading CSV file
+            </p>
+            {loader === false ? (
+              <button className="share-badge-btn" onClick={() => shareBadge()}>
+                Share Badge
+              </button>
+            ) : (
+              <button className="share-badge-btn loading-share-badge" disabled>
+                <img alt="" src={Loader} />
+                Sharing Now
+              </button>
+            )}
+          </div>
         </div>
       </div>
     </div>
