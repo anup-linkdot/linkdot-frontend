@@ -18,6 +18,7 @@ const CreateBadge = () => {
     const [inputFile, setInputFile] = useState(null)
     const [base64Image, setBase64Img] = useState(null)
     const [badge_name, setBadgeName] = useState(null)
+    const [image_raw, setRawImage] = useState(null)
     const [badge_name_error, setBadgeNameError] = useState(false)
     const [badge_description, setBadgeDescription] = useState(null)
     const [badge_desc_error, setBadgeDescriptionError] = useState(false)
@@ -34,6 +35,7 @@ const CreateBadge = () => {
         console.log(file)
         const base64Image = await getBase64Img(file[0])
         setInputFile(file[0].name)
+        setRawImage(file[0])
         setBase64Img(base64Image)
     }
 
@@ -55,6 +57,7 @@ const CreateBadge = () => {
                 badge_type,
                 description: badge_description,
                 image: base64Image,
+                image_raw,
                 // the below ones are needed just for checking in backend. Please add it to every image upload
                 image_name: "badge",
                 type: "image/jpeg;base64"
@@ -153,7 +156,7 @@ const CreateBadge = () => {
                 }
             </div>
             <button className='badge-input badge-input-file' onClick={() => clickInput()}><p>{inputFile ? inputFile : 'Upload Badge Image'}</p></button>
-            <input type='file' id="getFile" onChange={(e) => getInputFile(e.target.files)} />
+            <input type='file' name="file" id="getFile" onChange={(e) => getInputFile(e.target.files)} />
             {loader === false ?
                 <button className='create-badge-btn' onClick={() => createBadgeClick()}>Create and Preview</button>
                 :

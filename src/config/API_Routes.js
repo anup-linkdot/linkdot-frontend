@@ -19,7 +19,8 @@ const Api_routes = {
 }
 
 
-const server_url = process.env.REACT_APP_LOCAL_SERVER_URL
+const server_url = process.env.REACT_APP_SERVER
+// const server_url = process.env.REACT_APP_LOCAL_SERVER_URL
 // const auth_server_url = process.env.REACT_APP_AUTH_SERVER_URL
 // const dashboard_server_url = process.env.REACT_APP_DASHBOARD_SERVER_URL
 // const extension_server_url = process.env.REACT_APP_EXTENSION_SERVER_URL

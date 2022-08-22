@@ -134,6 +134,7 @@
     padding: 5px 0px;
     margin-right: 40px;
     cursor: pointer;
+
     p {
         color: white;
         font-family: "Poppins-Regular";
@@ -141,7 +142,7 @@
     }
 }
 
-.badge-tab-active  {
+.badge-tab-active {
     border-bottom: 2px solid white;
 }
 
@@ -154,9 +155,11 @@
     font-family: "Poppins-Regular";
     font-size: 14px;
     height: 40px;
+
     option {
         color: white;
     }
+
     option:disabled {
         color: white !important;
     }
@@ -172,11 +175,15 @@
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
+    height: 70vh;
+    overflow-y: scroll;
+    padding: 15px 0px;
 }
 
 .badge-div {
     padding: 10px;
     border: 1px solid white;
+    margin-bottom: 15px
 }
 
 //dropdown
