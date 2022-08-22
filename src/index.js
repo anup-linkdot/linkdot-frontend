@@ -4,6 +4,8 @@ import Routing from "./config/Routes";
 import store from "./redux/store/store";
 import { Provider } from "react-redux";
 import "./index.scss";
+import "./index.css";
+
 import reportWebVitals from "./reportWebVitals";
 import { PersistGate } from "redux-persist/integration/react";
 import { persistStore } from "redux-persist";
@@ -14,10 +16,10 @@ let persistor = persistStore(store);
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <ThirdwebProvider
-    desiredChainId={ChainId.Mainnet}
+    desiredChainId={ChainId.Polygon}
     walletConnectors={[
       "walletConnect",
-      { name: "injected", options: { shimDisconnect: true } },
+      { name: "injected", options: { shimDisconnect: false } },
       {
         name: "walletLink",
         options: {

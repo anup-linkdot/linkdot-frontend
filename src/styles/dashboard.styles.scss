@@ -1,6 +1,6 @@
 .dashboard-main-div {
     background-color: black;
-    height: 100vh;
+    min-height: 100vh;
 }
 
 .dashboard-template {
@@ -12,12 +12,13 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 30px
+    margin-bottom: 20px
 }
 
 .navbar-left-div {
     @extend .navbar-main;
     justify-content: flex-start;
+    cursor: pointer;
 
     .profile-name {
         color: white;
@@ -76,7 +77,6 @@
 
 .main-row {
     display: flex;
-    justify-content: center;
 }
 
 .button-left-main {
@@ -85,8 +85,7 @@
 
 .main-section-div {
     width: 100%;
-    height: 75vh;
-    display: flex;
+    min-height: 80vh;
     justify-content: center;
     align-items: center;
 }
@@ -103,11 +102,10 @@
 
 .main-pg-button {
     margin-top: 20px;
-    display: block;
     margin-left: auto;
     margin-right: auto;
-    padding: 10px 13px;
-    border: 1px solid #A58E09;
+    padding: auto;
+    border: 1px solid white;
 }
 
 .no-badge-div {
@@ -122,7 +120,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-bottom: 35px;
+    padding-bottom: 20px;
 }
 
 .badge-section {
@@ -204,4 +202,61 @@
     cursor: pointer;
     padding: 5px;
     border: 1px solid black;
+}
+
+.white-border {
+    border: 1px solid #FFFFFF;
+}
+
+.badge-card {
+    // display: "flex";
+    // flex-direction: column;
+    // justify-content: space-between;
+}
+
+.text_participation {
+    width: "100%";
+    height: "30px";
+    background: "white";
+    display: "flex";
+    align-items: "center";
+    justify-content: "center";
+    margin-bottom: "20px";
+}
+
+.gradient_text {
+    background: linear-gradient(90deg, #C93DF2 7.14%, #4DAAE9 92.86%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+}
+
+.badge_detail{
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(155.78deg, #FF881B 1.57%, #3A1AFF 108.05%);
+    box-shadow: 1.96313px 1.96313px 9.81567px rgba(0, 0, 0, 0.1);
+    border-radius: 14.7235px;
+    justify-content: space-between;
+}
+.badge_image {
+    display: "flex";
+    flex-direction: "column";
+    justify-content: "space-between";
+    text-align: "center";
+    height: "100%";
+}
+.badge_title {
+    height: 40px;
+    text-align: center;
+}
+
+.badge_description {
+    color: white;
+    margin-top: 16px;
+    font-size: 14px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
 }
