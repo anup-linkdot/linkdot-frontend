@@ -28,21 +28,28 @@ const InsightSection = () => {
         setLoading(false);
         if (activeTab === "issued") {
           console.log("active");
-          setBadges([...response.data]);
+          if (response.data.length > 0)
+            setBadges([...response.data]);
+          else
+            setBadges([])
         } else {
           console.log(response.data);
-          // wrong response structure recieving for claimed badges
-          const badges = [];
-          response.data.map((bagde) => {
-            badges.push({
-              name: bagde.badge_id.name,
-              badge_type: bagde.badge_id.badge_type,
-              issued_date: badges.issued_date,
-              issued_to: bagde.badge_id.issued_by, // wrong logic, may be refactor Table component for supporting different keys.
-              _id: bagde.badge_id._id,
+          if (response.data.length > 0) {
+            // wrong response structure recieving for claimed badges
+            const badges = [];
+            response.data.map((bagde) => {
+              badges.push({
+                name: bagde.badge_id.name,
+                badge_type: bagde.badge_id.badge_type,
+                issued_date: badges.issued_date,
+                issued_to: bagde.badge_id.issued_by, // wrong logic, may be refactor Table component for supporting different keys.
+                _id: bagde.badge_id._id,
+              });
             });
-          });
-          setBadges(badges);
+            setBadges(badges);
+          }
+          else
+            setBadges([])
         }
       } else {
         alert("Something went wrong. Try again!");

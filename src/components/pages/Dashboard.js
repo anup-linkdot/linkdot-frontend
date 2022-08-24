@@ -28,6 +28,8 @@ const Dashboard = () => {
       a[sortKey].localeCompare(b[sortKey])
     );
 
+    console.log(sortedBadges)
+
     setBadges(sortedBadges);
   }
 
@@ -38,21 +40,25 @@ const Dashboard = () => {
       if (response.status) {
         setLoading(false);
         if (filterKey === "claimed") {
+          console.log('here -- ', response)
           // wrong response structure recieving for claimed badges
           const badgesArray = [];
-          response.data.map((badge) => {
+          response.data.badges_earned.map((badge) => {
             badgesArray.push({
-              name: badge.badge_id.name,
-              badge_type: badge.badge_id.badge_type,
-              created_at: badge.badge_id.created_at,
-              _id: badge.badge_id._id,
-              image: badge.badge_id.image,
-              description: badge.badge_id.description,
+              name: badge.name,
+              badge_type: badge.badge_type,
+              created_at: badge.created_at,
+              _id: badge._id,
+              image: badge.image,
+              description: badge.description,
             });
           });
+
+          console.log(badgesArray)
           setBadges(badgesArray);
         } else {
-          setBadges(response.data);
+          setBadges(response.data.badges_issued);
+          console.log(response.data)
         }
       } else {
         alert("Something went wrong. Try again!");
@@ -86,7 +92,7 @@ const Dashboard = () => {
         />
         {/* if issued badges are empty return <NoBadge/> component.
         If claimed badges are empty <DataNotAvailable/> component is returned by default */}
-        {!loading && activeTab === "issued" && badges.length ? (
+        {!loading && activeTab === "issued" && badges.length > 0 ? (
           <BadgeList badgeList={badges} badgeDetailUrl={`/badge/issued`} />
         ) : activeTab === "claimed" ? (
           <BadgeList badgeList={badges} />

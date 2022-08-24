@@ -77,7 +77,7 @@ const claimBadge = async (body) => {
 const updateBadge = async (badge_id, body) => {
   return new Promise(async (resolve, reject) => {
     try {
-      const url = server_url + `${Api_routes.badgeDetail}${badge_id}`;
+      const url = server_url + `${Api_routes.badgeDetail}/${badge_id}`;
       const response = await patchRequest(url, body);
       resolve(response);
     } catch (error) {

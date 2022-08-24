@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../../styles/dashboard.styles.scss";
 import "../../styles/badge.styles.scss";
@@ -14,6 +14,7 @@ const BadgePreview = () => {
   const userReducer = useSelector((state) => state.userReducer);
   const dispatch = useDispatch();
   const ref = useRef();
+  const [ipfs_data, setIPFSData] = useState(null)
 
   const updateBadgeMintImage = useCallback(async () => {
     /**
@@ -48,6 +49,8 @@ const BadgePreview = () => {
   const showPreview = async () => {
     if (userReducer.badge_id !== null) {
       const response = await getBadgeData(userReducer.badge_id);
+      // const ipfs = await 
+      // const 
       if (response.status === true) {
         dispatch(setBadgeId(null));
         dispatch(saveBadge(response.data));
@@ -66,11 +69,11 @@ const BadgePreview = () => {
         <div ref={ref}>
           {userReducer.badge && (
             <Badge
-              title={userReducer.badge.data.name}
-              description={userReducer.badge.data.description}
-              image={userReducer.badge.badge_img}
-              badge_type={userReducer.badge.badge_type}
-              created_at={userReducer.badge.created_at}
+              title={userReducer.badge?.data?.name}
+              description={userReducer.badge?.data?.description}
+              image={userReducer.badge?.badge_img}
+              badge_type={userReducer.badge?.badge_type}
+              created_at={userReducer.badge?.created_at}
             />
           )}
         </div>

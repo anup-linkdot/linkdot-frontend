@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Badge from ".";
 import { DataNotAvailable } from "../DataNotAvailable";
@@ -15,6 +16,7 @@ export const BadgeList = ({ badgeList, badgeDetailUrl }) => {
     }
     return null;
   };
+
 
   return (
     <div
@@ -41,7 +43,7 @@ export const BadgeList = ({ badgeList, badgeDetailUrl }) => {
                 <Badge
                   title={badge.name}
                   description={badge.description}
-                  image={badge.image}
+                  image={`https://nftstorage.link/ipfs/${badge.ipfs_data.ipfs_nft.substring(1, badge.ipfs_data.ipfs_nft.length)}`}
                   badge_type={badge.badge_type}
                   created_at={badge.created_at}
                 />

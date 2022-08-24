@@ -10,6 +10,7 @@ import { getBase64Img } from "../../utils/badge-utils";
 import { createBadge } from "../../services/badge.service";
 import { setBadgeId } from "../../redux/actions/badge";
 import XSVG from "../../assets/svg/x.svg";
+import { uploadIPFS } from "../../config/Ipfs";
 
 const CreateBadge = () => {
   const navigate = useNavigate();
@@ -21,6 +22,7 @@ const CreateBadge = () => {
   const [loader, setLoader] = useState(false);
   const [startDate, setStartDate] = useState(null);
   const [inputFile, setInputFile] = useState(null);
+  const [file, setFile] = useState(null);
   const [base64Image, setBase64Img] = useState(null);
   const [badge_name, setBadgeName] = useState(null);
   const [badge_name_error, setBadgeNameError] = useState(false);
@@ -39,6 +41,7 @@ const CreateBadge = () => {
     console.log(file);
     const base64Image = await getBase64Img(file[0]);
     setInputFile(file[0].name);
+    setFile(file[0])
     setBase64Img(base64Image);
   };
 
@@ -68,14 +71,14 @@ const CreateBadge = () => {
       badge_name !== null &&
       badge_description !== null
     ) {
+      const ipfs_data = await uploadIPFS(badge_name, badge_type, badge_description, file)
+      console.log(ipfs_data.data)
       const body = {
         name: badge_name,
         badge_type,
         description: badge_description,
-        image: base64Image,
-        // the below ones are needed just for checking in backend. Please add it to every image upload
-        image_name: "badge",
-        type: "image/jpeg;base64",
+        ipfs: ipfs_data,
+        ipfs_img: ipfs_data.data.image.pathname
       };
       const response = await createBadge(body);
       console.log("response -- ", response);

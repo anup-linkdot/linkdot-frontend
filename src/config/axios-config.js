@@ -22,7 +22,7 @@ const postRequest = async (url, data) => {
         // console.log(response.status)
         if (error.response.status === 401) {
           getNewAccessToken();
-          postRequest(url);
+          postRequest(url, data);
         }
         resolve(error.response.data);
       });
@@ -35,7 +35,7 @@ const getRequest = async (url) => {
       .get(url, {
         headers: {
           Authorization: getStorage("token"),
-          "Content-Type": "text/plain",
+          "Content-Type": "application/json",
         },
       })
       .then((response) => {
